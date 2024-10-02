@@ -49,8 +49,6 @@ import AddCar from "../routes/addcar/AddCar";
 import ModelPdf from "../routes/modelinner/ModelPdf";
 import AddSocials from "../routes/addsocials/AddSocials";
 import ContactManager from "../routes/contactmanager/ContactManager";
-import Login from "../login/Login";
-import NotFound from "../NotFound";
 
 const Content: React.FC = () => {
   return (

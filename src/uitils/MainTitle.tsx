@@ -4,7 +4,6 @@ import { VscSettings } from "react-icons/vsc";
 import { useRecoilState } from "recoil";
 import { ComponentModalState, ComponentModalStateRefresh, ComponentModalStateRemove } from "../recoil/atoms";
 import { useLocation } from "react-router-dom";
-import { IoSettingsOutline } from "react-icons/io5";
 
 type props = {
   children: React.ReactNode;

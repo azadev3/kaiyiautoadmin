@@ -10,6 +10,8 @@ import InputField from "../../uitils/ui/InputField";
 import { DataTypeCar } from "./AddCarShow";
 import InputImageField from "../../uitils/ui/InputImageField";
 import Select from "react-select";
+import { ColorPicker, useColor } from "react-color-palette";
+import "react-color-palette/css";
 
 const AddCarCreate: React.FC = () => {
   //for selected model inner cars
@@ -72,6 +74,8 @@ const AddCarCreate: React.FC = () => {
   const [miniDescEn, setMiniDescEn] = React.useState<string>("");
   const [miniDescRu, setMiniDescRu] = React.useState<string>("");
 
+  const [color, setColor] = useColor("");
+
   const [selectedModel, setSelectedModel] = React.useState<string>("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -92,7 +96,7 @@ const AddCarCreate: React.FC = () => {
 
     setLoading(true);
 
-    if (!image || !titleAz || !titleEn || !titleRu || !price || !inStockAz || !inStockEn || !inStockRu) {
+    if (!color || !image || !titleAz || !titleEn || !titleRu || !price || !inStockAz || !inStockEn || !inStockRu) {
       toast.warning("Başlıqlar, şəkil və qiymət boş ola bilməz.", {
         position: "top-center",
       });
@@ -119,6 +123,8 @@ const AddCarCreate: React.FC = () => {
     formData.append("miniDescAz", miniDescAz);
     formData.append("miniDescEn", miniDescEn);
     formData.append("miniDescRu", miniDescRu);
+
+    formData.append("color", color.hex);
 
     formData.append("selected_model", selectedModel ? selectedModel : "");
 
@@ -150,7 +156,6 @@ const AddCarCreate: React.FC = () => {
         setMiniDescAz("");
         setMiniDescEn("");
         setMiniDescRu("");
-
         refetch();
       } else {
         toast.error("Bir problem oldu.", {
@@ -162,6 +167,13 @@ const AddCarCreate: React.FC = () => {
       toast.error("Bir problem oldu.", {
         position: "top-center",
       });
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 400) {
+          toast.error("Bu rəng çox güman ki, istifadə olunur. Başqa rəng əlavə edin", {
+            position: "top-center",
+          });
+        }
+      }
     } finally {
       setLoading(true);
       const timeout = setTimeout(() => {
@@ -288,6 +300,12 @@ const AddCarCreate: React.FC = () => {
         label="Maşına mini açıqlama əlavə edin (RU)"
         onChange={(e: ChangeEvent<HTMLInputElement>) => setMiniDescRu(e.target.value)}
       />
+
+      <div className="input-field">
+        <label htmlFor="">Maşın nə rəngdədir?*</label>
+        <ColorPicker height={100} color={color} onChange={setColor} />
+        <h3 style={{ fontWeight: "600", fontSize: "24px" }}>{color.hex || ""}</h3>
+      </div>
 
       <Select
         value={models?.find((option) => option?.value === selectedModel)}

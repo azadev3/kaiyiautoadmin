@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { RxCaretDown } from "react-icons/rx";
+import { useRecoilState } from "recoil";
+import { SearchModalState } from "../recoil/atoms";
 
 type DropdownItems = {
   id: number;
@@ -9,7 +11,7 @@ type DropdownItems = {
 };
 
 type props = {
-  title: string;
+  title: any;
   to: string;
   activeLinkIcon?: any;
   isDropdown?: boolean;
@@ -33,6 +35,8 @@ const SidebarLink: React.FC<props> = (props) => {
     }
   }, [location, props?.dropdownItems]);
 
+  const [_, setSearchModal] = useRecoilState(SearchModalState);
+
   return (
     <div className="link-area">
       {props.isDropdown ? (
@@ -44,7 +48,7 @@ const SidebarLink: React.FC<props> = (props) => {
           <RxCaretDown className={`caret-down ${menu ? "active" : ""}`} />
         </div>
       ) : (
-        <NavLink to={props?.to} className="link">
+        <NavLink onClick={() => {setSearchModal(false)}} to={props?.to} className="link">
           <div className="left">
             <span className="linkicon">{props.activeLinkIcon}</span>
             <span className="linkname">{props.title}</span>
@@ -55,7 +59,7 @@ const SidebarLink: React.FC<props> = (props) => {
       {/* menu */}
       <div className={`submenu ${menu ? "submenu-active" : ""}`}>
         {props.dropdownItems?.map((item: DropdownItems, i: number) => (
-          <NavLink to={item?.to} className="link-submenu" key={i}>
+          <NavLink onClick={() => {setSearchModal(false)}} to={item?.to} className="link-submenu" key={i}>
             {item?.title}
           </NavLink>
         ))}

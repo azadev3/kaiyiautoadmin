@@ -35,6 +35,9 @@ import KaiyiNewsEdit from "../cruds/kaiyihistory/kaiyinews/KaiyiNewsEdit";
 import ContactHeroEdit from "../cruds/kaiyicontact/contacthero/ContactHeroEdit";
 import AddDealerEdit from "../cruds/adddealer/AddDealerEdit";
 import AddCarEdit from "../cruds/addcar/AddCarEdit";
+import ModelPdfEdit from "../cruds/modelinnertabs/modelpdf/ModelPdfEdit";
+import RepairRulesDownloadEdit from "../cruds/repairrulesdownload/RepairRulesDownloadEdit";
+import AddSocialEdit from "../cruds/addsocials/AddSocialEdit";
 
 const RefreshComponent: React.FC = () => {
   const renderComponent = () => {
@@ -99,6 +102,8 @@ const RefreshComponent: React.FC = () => {
         return <TrafficRulesBottomEdit />;
       case "/repair-hero":
         return <RepairHeroEdit />;
+      case "/repair-rules-download":
+        return <RepairRulesDownloadEdit />;
       case "/kaiyi-history-hero":
         return <KaiyiHistoryHeroEdit />;
       case "/kaiyi-history-bottom":
@@ -113,6 +118,10 @@ const RefreshComponent: React.FC = () => {
         return <AddDealerEdit />;
       case "/add-car":
         return <AddCarEdit />;
+      case "/modelpdf":
+        return <ModelPdfEdit />;
+      case "/add-socials":
+        return <AddSocialEdit />;
       default:
         return <div>Bu rotada component mövcud deyil.</div>;
     }

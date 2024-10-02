@@ -1,6 +1,5 @@
 import React from "react";
 import MyParts from "./uitils/MyParts";
-import LastOperations from "./uitils/LastOperations";
 import ChartLengths from "./uitils/ChartLengths";
 import ChartOthers from "./uitils/ChartOthers";
 import { Route, Routes } from "react-router-dom";
@@ -47,6 +46,11 @@ import KaiyiContactFeedback from "../routes/kaiyicontact/KaiyiContactFeedback";
 import AddDealer from "../routes/findsalesno/AddDealer";
 import DealerContacts from "../routes/findsalesno/DealerContacts";
 import AddCar from "../routes/addcar/AddCar";
+import ModelPdf from "../routes/modelinner/ModelPdf";
+import AddSocials from "../routes/addsocials/AddSocials";
+import ContactManager from "../routes/contactmanager/ContactManager";
+import Login from "../login/Login";
+import NotFound from "../NotFound";
 
 const Content: React.FC = () => {
   return (
@@ -66,7 +70,7 @@ const Content: React.FC = () => {
               </div>
               <div className="top-section">
                 <MyParts />
-                <LastOperations />
+                {/* <LastOperations /> */}
               </div>
             </React.Fragment>
           }
@@ -109,6 +113,7 @@ const Content: React.FC = () => {
         <Route path="/modelinteriertab" element={<ModelInerierTab />} />
         <Route path="/modelcomfortab" element={<ModelComforTab />} />
         <Route path="/modelsectab" element={<ModelSecTab />} />
+        <Route path="/modelpdf" element={<ModelPdf />} />
         {/* test drive register */}
         <Route path="/test-drive-hero" element={<TestDriveRegister />} />
         <Route path="/test-drive-registers" element={<TestDriveUsers />} />
@@ -138,6 +143,8 @@ const Content: React.FC = () => {
         <Route path="/kaiyi-contact-feedback" element={<KaiyiContactFeedback />} />
         {/* ADD CAR */}
         <Route path="/add-car" element={<AddCar />} />
+        <Route path="/add-socials" element={<AddSocials />} />
+        <Route path="/contact-manager" element={<ContactManager />} />
       </Routes>
     </div>
   );

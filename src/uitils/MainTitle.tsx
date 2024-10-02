@@ -4,6 +4,7 @@ import { VscSettings } from "react-icons/vsc";
 import { useRecoilState } from "recoil";
 import { ComponentModalState, ComponentModalStateRefresh, ComponentModalStateRemove } from "../recoil/atoms";
 import { useLocation } from "react-router-dom";
+import { IoSettingsOutline } from "react-icons/io5";
 
 type props = {
   children: React.ReactNode;
@@ -51,7 +52,7 @@ const MainTitle: React.FC<props> = (props) => {
           ref={btnRef}
           className="right"
           style={{
-            background: dropdown ? "#cecece90" : "",
+            background: dropdown ? "mediumpurple" : "",
             display:
               location.pathname === "/subscribtionNews" ||
               location.pathname === "/test-drive-registers" ||

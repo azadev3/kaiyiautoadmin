@@ -38,6 +38,9 @@ import KaiyiNewsShow from "../cruds/kaiyihistory/kaiyinews/KaiyiNewsShow";
 import ContactHeroShow from "../cruds/kaiyicontact/contacthero/ContactHeroShow";
 import AddDealerShow from "../cruds/adddealer/AddDealerShow";
 import AddCarShow from "../cruds/addcar/AddCarShow";
+import ModelPdfShow from "../cruds/modelinnertabs/modelpdf/ModelPdfShow";
+import RepairRulesDownloadShow from "../cruds/repairrulesdownload/RepairRulesDownloadShow";
+import AddSocialShow from "../cruds/addsocials/AddSocialShow";
 
 const ShowComponent: React.FC = () => {
   const location = useLocation();
@@ -106,6 +109,8 @@ const ShowComponent: React.FC = () => {
         return <TrafficRulesBottomShow />;
       case "/repair-hero":
         return <RepairHeroShow />;
+      case "/repair-rules-download":
+        return <RepairRulesDownloadShow />;
       case "/kaiyi-history-hero":
         return <KaiyiHistoryHeroShow />;
       case "/kaiyi-history-bottom":
@@ -120,6 +125,10 @@ const ShowComponent: React.FC = () => {
         return <AddDealerShow />;
       case "/add-car":
         return <AddCarShow />;
+      case "/modelpdf":
+        return <ModelPdfShow />;
+      case "/add-socials":
+        return <AddSocialShow />;
       default:
         return <div>Bu rotada component mövcud deyil.</div>;
     }

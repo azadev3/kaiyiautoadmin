@@ -36,6 +36,9 @@ import KaiyiNewsDelete from "../cruds/kaiyihistory/kaiyinews/KaiyiNewsDelete";
 import ContactHeroDelete from "../cruds/kaiyicontact/contacthero/ContactHeroDelete";
 import AddDealerDelete from "../cruds/adddealer/AddDealerDelete";
 import AddCarDelete from "../cruds/addcar/AddCarDelete";
+import ModelPdfDelete from "../cruds/modelinnertabs/modelpdf/ModelPdfDelete";
+import RepairRulesDownloadDelete from "../cruds/repairrulesdownload/RepairRulesDownloadDelete";
+import AddSocialDelete from "../cruds/addsocials/AddSocialDelete";
 
 const RemoveComponent: React.FC = () => {
   const renderComponent = () => {
@@ -100,6 +103,8 @@ const RemoveComponent: React.FC = () => {
         return <TrafficRulesBottomDelete />;
       case "/repair-hero":
         return <RepairHeroDelete />;
+      case "/repair-rules-download":
+        return <RepairRulesDownloadDelete />;
       case "/kaiyi-history-hero":
         return <KaiyiHistoryHeroDelete />;
       case "/kaiyi-history-bottom":
@@ -114,6 +119,10 @@ const RemoveComponent: React.FC = () => {
         return <AddDealerDelete />;
       case "/add-car":
         return <AddCarDelete />;
+      case "/modelpdf":
+        return <ModelPdfDelete />;
+      case "/add-socials":
+        return <AddSocialDelete />;
       default:
         return <div>Bu rotada component mövcud deyil.</div>;
     }

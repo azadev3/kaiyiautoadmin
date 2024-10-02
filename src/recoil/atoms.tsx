@@ -47,3 +47,13 @@ export const SidebarToggleState = atom<boolean>({
   key: "SidebarToggleState",
   default: false,
 });
+
+export const SearchModalState = atom<boolean>({
+  key: "searchModalKey",
+  default: false,
+});
+
+export const IsAuthState = atom<boolean>({
+  key: "isAuthStateKey",
+  default: false,
+});

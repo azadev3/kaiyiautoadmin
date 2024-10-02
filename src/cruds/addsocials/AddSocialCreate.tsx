@@ -1,16 +1,16 @@
 import React, { ChangeEvent } from "react";
-import axios from "axios";
-import { useRecoilState } from "recoil";
-import { toast } from "react-toastify";
-import { useQuery } from "@tanstack/react-query";
-import { LoadingState } from "../../recoil/atoms";
-import { endpoint } from "../../Baseurl";
-import InputField from "../../uitils/ui/InputField";
 import InputImageField from "../../uitils/ui/InputImageField";
 import ButtonSubmit from "../../uitils/ui/ButtonSubmit";
-import { DataTypeRepairRulesDownload } from "./RepairRulesDownloadShow";
+import axios from "axios";
+import { endpoint } from "../../Baseurl";
+import { useRecoilState } from "recoil";
+import { LoadingState } from "../../recoil/atoms";
+import { toast } from "react-toastify";
+import { useQuery } from "@tanstack/react-query";
+import InputField from "../../uitils/ui/InputField";
+import { DataTypeSocial } from "./AddSocialShow";
 
-const RepairRulesDownloadCreate: React.FC = () => {
+const AddSocialCreate: React.FC = () => {
   const [loading, setLoading] = useRecoilState(LoadingState);
   const [previewImg, setPreviewImg] = React.useState<string>("");
   const [image, setImage] = React.useState<File | null>(null);
@@ -18,13 +18,12 @@ const RepairRulesDownloadCreate: React.FC = () => {
   const [titleAz, setTitleAz] = React.useState<string>("");
   const [titleEn, setTitleEn] = React.useState<string>("");
   const [titleRu, setTitleRu] = React.useState<string>("");
+  const [link, setLink] = React.useState<string>("");
 
-  const [pdf, setPdf] = React.useState<File | null>(null);
-
-  const { refetch } = useQuery<DataTypeRepairRulesDownload[]>({
-    queryKey: ["fetchDataKeyRepairRulesDownload"],
+  const { refetch } = useQuery<DataTypeSocial[]>({
+    queryKey: ["fetchDataKeySocials"],
     queryFn: async () => {
-      const response = await axios.get(`${endpoint}/repair-rules-download`, {
+      const response = await axios.get(`${endpoint}/add-socials`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -47,19 +46,12 @@ const RepairRulesDownloadCreate: React.FC = () => {
     }
   };
 
-  // upload PDF file
-  const handleUploadPdf = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      setPdf(file);
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     setLoading(true);
 
-    if (!pdf || !image) {
+    if (!image) {
       toast.warning("Xana və ya xanalar boş olmamalıdır.", {
         position: "top-center",
       });
@@ -67,21 +59,14 @@ const RepairRulesDownloadCreate: React.FC = () => {
     }
 
     const formData = new FormData();
-
-    if (image) {
-      formData.append("img", image);
-    }
-
-    if (pdf) {
-      formData.append("pdf", pdf);
-    }
-
+    formData.append("img", image);
     formData.append("title_az", titleAz);
     formData.append("title_en", titleEn);
     formData.append("title_ru", titleRu);
+    formData.append("link", link);
 
     try {
-      const response = await axios.post(`${endpoint}/repair-rules-download`, formData, {
+      const response = await axios.post(`${endpoint}/add-socials`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -91,10 +76,8 @@ const RepairRulesDownloadCreate: React.FC = () => {
         toast.success("Əla! Uğurla əlavə edildi.", {
           position: "top-center",
         });
-        setTitleAz("");
-        setTitleEn("");
-        setTitleRu("");
-        window.location.reload();
+        setPreviewImg("");
+        setImage(null);
         refetch();
       } else {
         toast.error("Bir problem oldu.", {
@@ -102,55 +85,58 @@ const RepairRulesDownloadCreate: React.FC = () => {
         });
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error 3:", error);
       toast.error("Bir problem oldu.", {
         position: "top-center",
       });
     } finally {
-      setLoading(false);
+      setLoading(true);
+      const timeout = setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+
+      return () => clearTimeout(timeout);
     }
   };
 
   return (
     <form acceptCharset="UTF-8" onSubmit={handleSubmit}>
       <InputField
-        value={titleAz}
-        required
         name="title_az"
-        label="Təmir və Baxım - Baxım qaydaları Başlıq (AZ)*"
-        placeholder="Məsələn: PETROL 1.5T, 6MT BACK"
+        value={titleAz}
+        label="Sosial Media Başlıq (AZ)"
+        placeholder="Məsələn: Example data..."
         onChange={(e: ChangeEvent<HTMLInputElement>) => setTitleAz(e.target.value)}
       />
       <InputField
-        required
         name="title_en"
-        label="Təmir və Baxım - Baxım qaydaları Başlıq (EN)*"
-        placeholder="Məsələn: PETROL 1.5T, 6MT BACK"
+        label="Sosial Media Başlıq (EN)"
+        placeholder="Məsələn: Example data..."
         value={titleEn}
         onChange={(e: ChangeEvent<HTMLInputElement>) => setTitleEn(e.target.value)}
       />
       <InputField
-        required
         name="title_ru"
-        label="Təmir və Baxım - Baxım qaydaları Başlıq (RU)*"
-        placeholder="Məsələn: PETROL 1.5T, 6MT BACK"
+        label="Sosial Media Başlıq (RU)"
+        placeholder="Məsələn: Example data..."
         onChange={(e: ChangeEvent<HTMLInputElement>) => setTitleRu(e.target.value)}
         value={titleRu}
       />
-
-      <InputImageField labelTitle="Qaydaya ait şəkil yükləyin*" req={false} onChange={handleChange} name="img" />
-      {previewImg && <img src={previewImg} alt="Preview" style={{ maxWidth: "200px", marginTop: "10px" }} />}
-      <InputImageField
-        accepting={".pdf, .doc, .docx"}
-        labelTitle="Qaydaya ait PDF - DOC - DOCX *"
-        req={false}
-        onChange={handleUploadPdf}
-        name="pdf"
+      <InputField
+        name="link"
+        required
+        label="Sosial Media Yönlənmə URL (link)"
+        placeholder="Məsələn: https://www.youtube.com/my-account"
+        onChange={(e: ChangeEvent<HTMLInputElement>) => setLink(e.target.value)}
+        value={link}
       />
+      <InputImageField req={false} labelTitle="İkon yükləyin" onChange={handleChange} name="img" />
+
+      {previewImg && <img src={previewImg} alt="Preview" style={{ maxWidth: "200px", marginTop: "10px" }} />}
 
       <ButtonSubmit isLoading={loading} />
     </form>
   );
 };
 
-export default RepairRulesDownloadCreate;
+export default AddSocialCreate;

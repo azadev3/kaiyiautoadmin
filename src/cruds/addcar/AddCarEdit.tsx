@@ -15,6 +15,8 @@ import InputField from "../../uitils/ui/InputField";
 import { DataTypeCar } from "./AddCarShow";
 import InputImageField from "../../uitils/ui/InputImageField";
 import Select from "react-select";
+import { ColorPicker, useColor } from "react-color-palette";
+import "react-color-palette/css";
 
 const AddCarEdit: React.FC = () => {
   //for selected model inner contents
@@ -148,6 +150,7 @@ const AddCarEdit: React.FC = () => {
     const [miniDescEn, setMiniDescEn] = React.useState<string>(props?.data?.miniDesc?.en || "");
     const [miniDescRu, setMiniDescRu] = React.useState<string>(props?.data?.miniDesc?.ru || "");
 
+    const [color, setColor] = useColor("");
     const [selectedModel, setSelectedModel] = React.useState<string>(props?.data?.selected_model || "");
 
     const [selectedStatus, setSelectedStatus] = React.useState<string>(props?.data?.status || "active");
@@ -196,8 +199,12 @@ const AddCarEdit: React.FC = () => {
 
       setLoading(true);
 
-      if (!image || !titleAz || !titleEn || !titleRu || !price || !inStockAz || !inStockEn || !inStockRu) {
+      if (!color || !image || !titleAz || !titleEn || !titleRu || !price || !inStockAz || !inStockEn || !inStockRu) {
         toast.warning("Başlıqlar, şəkil və qiymət boş ola bilməz.", {
+          position: "top-center",
+        });
+      } else if (color?.hex === props?.data?.color) {
+        toast.warning("Bu rəng seçilmişdi, başqa rəng seçin.", {
           position: "top-center",
         });
       }
@@ -223,6 +230,8 @@ const AddCarEdit: React.FC = () => {
       formData.append("miniDescAz", miniDescAz);
       formData.append("miniDescEn", miniDescEn);
       formData.append("miniDescRu", miniDescRu);
+
+      formData.append("color", color.hex);
 
       formData.append("status", selectedStatus);
       formData.append("selected_model", selectedModel ? selectedModel : "");
@@ -381,6 +390,13 @@ const AddCarEdit: React.FC = () => {
               label="Maşına mini açıqlama əlavə edin (RU)"
               onChange={(e: ChangeEvent<HTMLInputElement>) => setMiniDescRu(e.target.value)}
             />
+
+            <div className="input-field">
+              <label htmlFor="">Maşın nə rəngdədir?*</label>
+              <ColorPicker height={100} color={color} onChange={setColor} />
+              <h3 style={{ fontWeight: "600", fontSize: "24px" }}>{color.hex || ""}</h3>
+            </div>
+
             <Select
               value={models?.find((option) => option?.value === selectedModel)}
               onChange={(selectedOption) => {

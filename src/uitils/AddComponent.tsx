@@ -38,6 +38,8 @@ import KaiyiNewsCreate from "../cruds/kaiyihistory/kaiyinews/KaiyiNewsCreate";
 import ContactHeroCreate from "../cruds/kaiyicontact/contacthero/ContactHeroCreate";
 import AddDealerCreate from "../cruds/adddealer/AddDealerCreate";
 import AddCarCreate from "../cruds/addcar/AddCarCreate";
+import ModelPdfCreate from "../cruds/modelinnertabs/modelpdf/ModelPdfCreate";
+import AddSocialCreate from "../cruds/addsocials/AddSocialCreate";
 
 const AddComponent: React.FC = () => {
   const location = useLocation();
@@ -120,6 +122,10 @@ const AddComponent: React.FC = () => {
         return <AddDealerCreate />;
       case "/add-car":
         return <AddCarCreate />;
+      case "/modelpdf":
+        return <ModelPdfCreate />;
+      case "/add-socials":
+        return <AddSocialCreate />;
       default:
         return <div>Bu rotada component mövcud deyil.</div>;
     }

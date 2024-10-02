@@ -11,6 +11,8 @@ type LastOperationsType = {
 };
 
 const LastOperations: React.FC = () => {
+
+  
   const Operations: LastOperationsType[] = [
     {
       id: 1,

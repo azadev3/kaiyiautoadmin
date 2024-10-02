@@ -18,12 +18,7 @@ export type DataTypeRepairRulesDownload = {
     en: string;
     ru: string;
   };
-  pdfs: [
-    {
-      _id: string;
-      file: string;
-    }
-  ];
+  pdfs: string;
   image: string;
   status?: string;
 };

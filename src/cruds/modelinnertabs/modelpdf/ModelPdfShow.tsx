@@ -1,58 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
-import { endpoint } from "../../Baseurl";
-import Loader from "../../Loader";
 import { useRecoilState } from "recoil";
-import { isTableModalState } from "../../recoil/atoms";
-import { RiCloseFill } from "react-icons/ri";
-import { FaInfo } from "react-icons/fa6";
 import { LuEye } from "react-icons/lu";
+import { FaInfo } from "react-icons/fa6";
+import { RiCloseFill } from "react-icons/ri";
 import { MdSignalWifiStatusbar3Bar, MdSignalWifiStatusbarNotConnected } from "react-icons/md";
-import StatusToggle from "../../uitils/StatusToggle";
+import { endpoint } from "../../../Baseurl";
+import { isTableModalState } from "../../../recoil/atoms";
+import Loader from "../../../Loader";
+import StatusToggle from "../../../uitils/StatusToggle";
+import { Link } from "react-router-dom";
 
-export type Descriptions = {
-  id: string;
-  descTitle: {
-    az: string;
-    en: string;
-    ru: string;
-  };
-  icon: string;
+export type DataTypeModelPdf = {
+  _id: string;
+  pdf: string;
+  selected_model: string;
+  status?: string;
 };
 
-export interface DataTypeCar {
-  _id: string;
-  title: {
-    az: string;
-    en: string;
-    ru: string;
-  };
-  year: string;
-  vin: string;
-  inStock: {
-    az: string;
-    en: string;
-    ru: string;
-  };
-  price: string;
-  companyTitle: {
-    az: string;
-    en: string;
-    ru: string;
-  };
-  carImage: string;
-  miniDesc: {
-    az: string;
-    en: string;
-    ru: string;
-  };
-  color: string;
-  selected_model: string;
-  status: string;
-}
-
-const AddCarShow: React.FC = () => {
+const ModelPdfShow: React.FC = () => {
   //for selected model inner contents
   const { data: datas } = useQuery<any>({
     queryKey: ["fetchDataModelsAll", "az"],
@@ -66,16 +33,17 @@ const AddCarShow: React.FC = () => {
       return response.data;
     },
   });
+
   const hasDataModels = datas && datas?.length > 0;
 
   const {
     data: fetchData,
     isLoading,
     refetch,
-  } = useQuery<DataTypeCar[]>({
-    queryKey: ["fetchDataKeyAddCar"],
+  } = useQuery<DataTypeModelPdf[]>({
+    queryKey: ["fetchDataModelPdf"],
     queryFn: async () => {
-      const response = await axios.get(`${endpoint}/add-car`, {
+      const response = await axios.get(`${endpoint}/modelpdf`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -94,7 +62,7 @@ const AddCarShow: React.FC = () => {
   const hasData = fetchData && fetchData?.length > 0;
   const isTableModal =
     hasData &&
-    fetchData?.find((data: DataTypeCar) => {
+    fetchData?.find((data: DataTypeModelPdf) => {
       return tableModal === data?._id;
     });
 
@@ -114,7 +82,7 @@ const AddCarShow: React.FC = () => {
   //update status
   const updateStatus = async (id: string, newStatus: string) => {
     try {
-      const response = await axios.post(`${endpoint}/status-update-add-car/${id}`, {
+      const response = await axios.post(`${endpoint}/status-update-modelpdf/${id}`, {
         status: newStatus,
       });
       const timeout = setTimeout(() => {
@@ -141,29 +109,15 @@ const AddCarShow: React.FC = () => {
             <tr>
               <th>Status</th>
               <th>ID</th>
-              <th>Aid Olduğu Model</th>
-              <th>Başlıq (AZ)</th>
-              <th>Başlıq (EN)</th>
-              <th>Başlıq (RU)</th>
-              <th>İl</th>
-              <th>VİN</th>
-              <th>Stok vəziyyəti (AZ)</th>
-              <th>Stok vəziyyəti (EN)</th>
-              <th>Stok vəziyyəti (RU)</th>
-              <th>Qiymət</th>
-              <th>Mini Açıqlama (AZ)</th>
-              <th>Mini Açıqlama (EN)</th>
-              <th>Mini Açıqlama (RU)</th>
-              <th>Company Title (AZ)</th>
-              <th>Company Title (EN)</th>
-              <th>Company Title (RU)</th>
+              <th>Fayl</th>
+              <th>Modeldədir:</th>
               <th>Digər</th>
             </tr>
           </thead>
 
           <tbody>
             {hasData
-              ? fetchData?.map((data: DataTypeCar) => (
+              ? fetchData?.map((data: DataTypeModelPdf) => (
                   <tr key={data?._id}>
                     <td>
                       <div className={`status-btn ${data?.status === "active" ? "actived" : ""}`}>
@@ -176,11 +130,16 @@ const AddCarShow: React.FC = () => {
                         <StatusToggle
                           id={data?._id}
                           isChange={(newStatus) => updateStatus(data?._id, newStatus)}
-                          api="/status-add-car"
+                          api="/status-modelpdf"
                         />
                       </div>
                     </td>
                     <td>{data?._id}</td>
+                    <td>
+                      <Link target="_blank" to={`http://localhost:3000${data?.pdf}`}>
+                        {data?.pdf}
+                      </Link>
+                    </td>
                     {hasDataModels && datas?.find((item: any) => item?._id === data?.selected_model) ? (
                       <td title={datas?.selected_model}>
                         {datas?.find((item: any) => item?._id === data?.selected_model)?.title || ""}
@@ -188,21 +147,6 @@ const AddCarShow: React.FC = () => {
                     ) : (
                       <td>Model tapılmadı</td>
                     )}
-                    <td>{data?.title?.az}</td>
-                    <td>{data?.title?.en}</td>
-                    <td>{data?.title?.ru}</td>
-                    <td>{data?.year}</td>
-                    <td>{data?.vin}</td>
-                    <td>{data?.inStock?.az}</td>
-                    <td>{data?.inStock?.en}</td>
-                    <td>{data?.inStock?.ru}</td>
-                    <td>{data?.price}</td>
-                    <td>{data?.miniDesc?.az}</td>
-                    <td>{data?.miniDesc?.en}</td>
-                    <td>{data?.miniDesc?.ru}</td>
-                    <td>{data?.companyTitle?.az}</td>
-                    <td>{data?.companyTitle?.en}</td>
-                    <td>{data?.companyTitle?.ru}</td>
                     <td>
                       <button className="showmorebtn" onClick={() => handleShowTableModal(data?._id)}>
                         <span>Tam Göstər</span>
@@ -228,22 +172,8 @@ const AddCarShow: React.FC = () => {
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Aid Olduğu Model</th>
-                  <th>Başlıq (AZ)</th>
-                  <th>Başlıq (EN)</th>
-                  <th>Başlıq (RU)</th>
-                  <th>İl</th>
-                  <th>VİN</th>
-                  <th>Stok vəziyyəti (AZ)</th>
-                  <th>Stok vəziyyəti (EN)</th>
-                  <th>Stok vəziyyəti (RU)</th>
-                  <th>Qiymət</th>
-                  <th>Mini Açıqlama (AZ)</th>
-                  <th>Mini Açıqlama (EN)</th>
-                  <th>Mini Açıqlama (RU)</th>
-                  <th>Company Title (AZ)</th>
-                  <th>Company Title (EN)</th>
-                  <th>Company Title (RU)</th>
+                  <th>Fayl</th>
+                  <th>Modeldədir:</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -252,6 +182,11 @@ const AddCarShow: React.FC = () => {
                 {hasData && isTableModal ? (
                   <tr>
                     <td title={isTableModal?._id}>{isTableModal?._id}</td>
+                    <td title={isTableModal?.pdf}>
+                      <Link target="_blank" to={`http://localhost:3000${isTableModal?.pdf}`}>
+                        {isTableModal?.pdf}
+                      </Link>
+                    </td>
                     {hasDataModels && datas?.find((item: any) => item?._id === isTableModal?.selected_model) ? (
                       <td title={isTableModal?.selected_model}>
                         {datas?.find((item: any) => item?._id === isTableModal?.selected_model)?.title || ""}
@@ -259,21 +194,6 @@ const AddCarShow: React.FC = () => {
                     ) : (
                       <td>Model tapılmadı</td>
                     )}
-                    <td title={isTableModal?.title?.az}>{isTableModal?.title?.az}</td>
-                    <td title={isTableModal?.title?.en}>{isTableModal?.title?.en}</td>
-                    <td title={isTableModal?.title?.ru}>{isTableModal?.title?.ru}</td>
-                    <td title={isTableModal?.year}>{isTableModal?.year}</td>
-                    <td title={isTableModal?.vin}>{isTableModal?.vin}</td>
-                    <td title={isTableModal?.inStock?.az}>{isTableModal?.inStock?.az}</td>
-                    <td title={isTableModal?.inStock?.en}>{isTableModal?.inStock?.en}</td>
-                    <td title={isTableModal?.inStock?.ru}>{isTableModal?.inStock?.ru}</td>
-                    <td title={isTableModal?.price}>{isTableModal?.price}</td>
-                    <td title={isTableModal?.miniDesc?.az}>{isTableModal?.miniDesc?.az}</td>
-                    <td title={isTableModal?.miniDesc?.en}>{isTableModal?.miniDesc?.en}</td>
-                    <td title={isTableModal?.miniDesc?.ru}>{isTableModal?.miniDesc?.ru}</td>
-                    <td title={isTableModal?.companyTitle?.az}>{isTableModal?.companyTitle?.az}</td>
-                    <td title={isTableModal?.companyTitle?.en}>{isTableModal?.companyTitle?.en}</td>
-                    <td title={isTableModal?.companyTitle?.ru}>{isTableModal?.companyTitle?.ru}</td>
                     <td title={isTableModal?.status}>
                       <div className={`status-btn ${isTableModal?.status === "active" ? "actived" : ""}`}>
                         {isTableModal?.status === "active" ? (
@@ -297,4 +217,4 @@ const AddCarShow: React.FC = () => {
   );
 };
 
-export default AddCarShow;
+export default ModelPdfShow;

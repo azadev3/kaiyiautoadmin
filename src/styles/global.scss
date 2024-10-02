@@ -97,58 +97,83 @@
 }
 .loader {
   width: 100%;
-  height: 60vh;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  .spinner {
-    position: relative;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    margin-left: -75px;
-    span {
-      position: absolute;
-      top: 50%;
-      left: var(--left);
-      width: 35px;
-      height: 7px;
-      background: #00ff40;
-      animation: dominos 1s ease infinite;
-      box-shadow: 2px 2px 3px 0px rgb(0, 114, 207);
-      &:nth-child(1) {
-        --left: 80px;
-        animation-delay: 0.125s;
-      }
-      &:nth-child(2) {
-        --left: 70px;
-        animation-delay: 0.3s;
-      }
-      &:nth-child(3) {
-        left: 60px;
-        animation-delay: 0.425s;
-      }
-      &:nth-child(4) {
-        animation-delay: 0.54s;
-        left: 50px;
-      }
-      &:nth-child(5) {
-        animation-delay: 0.665s;
-        left: 40px;
-      }
-      &:nth-child(6) {
-        animation-delay: 0.79s;
-        left: 30px;
-      }
-      &:nth-child(7) {
-        animation-delay: 0.915s;
-        left: 20px;
-      }
-      &:nth-child(8) {
-        left: 10px;
-      }
+  .ui-loader {
+    padding: 8px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+  }
+
+  .loader-blk {
+    color: #3f51b5;
+    animation: rotate-outer08 1.4s linear infinite;
+  }
+
+  .multiColor-loader {
+    display: block;
+    animation: color-anim08 1.4s infinite;
+  }
+
+  .loader-circle {
+    stroke: currentColor;
+  }
+
+  .MuiCircularProgress-circleStatic {
+    transition: stroke-dashoffset 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  }
+
+  .loader-circle-animation {
+    animation: rotate-inner08 1.4s ease-in-out infinite;
+    stroke-dasharray: 80px, 200px;
+    stroke-dashoffset: 0;
+  }
+
+  @keyframes rotate-outer08 {
+    0% {
+      transform-origin: 50% 50%;
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes rotate-inner08 {
+    0% {
+      stroke-dasharray: 1px, 200px;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 100px, 200px;
+      stroke-dashoffset: -15px;
+    }
+
+    100% {
+      stroke-dasharray: 100px, 200px;
+      stroke-dashoffset: -125px;
+    }
+  }
+
+  @keyframes color-anim08 {
+    0% {
+      color: #4285f4;
+    }
+
+    25% {
+      color: #ea4335;
+    }
+
+    50% {
+      color: #f9bb2d;
+    }
+
+    75% {
+      color: #34a853;
     }
   }
 }

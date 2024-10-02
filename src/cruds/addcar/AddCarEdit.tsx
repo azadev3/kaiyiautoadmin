@@ -143,7 +143,7 @@ const AddCarEdit: React.FC = () => {
     const [companyTitleEn, setCompanyTitleEn] = React.useState<string>(props?.data?.companyTitle?.en);
     const [companyTitleRu, setCompanyTitleRu] = React.useState<string>(props?.data?.companyTitle?.ru);
 
-    const [previewImg, setPreviewImg] = React.useState<string>(`http://localhost:3000${props?.data?.carImage}` || "");
+    const [previewImg, setPreviewImg] = React.useState<string>(`https://kaiyi-21d4.onrender.com${props?.data?.carImage}` || "");
     const [image, setImage] = React.useState<File | null>(null);
 
     const [miniDescAz, setMiniDescAz] = React.useState<string>(props?.data?.miniDesc?.az || "");
@@ -161,7 +161,7 @@ const AddCarEdit: React.FC = () => {
 
     //fill the defaul values
     React.useEffect(() => {
-      setPreviewImg(`http://localhost:3000${props?.data?.carImage}` || "");
+      setPreviewImg(`https://kaiyi-21d4.onrender.com${props?.data?.carImage}` || "");
       setSelectedModel(props?.data?.selected_model || "");
       setSelectedStatus(props?.data?.status || "active");
       setTitleAz(props?.data?.title?.az || "");

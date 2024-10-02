@@ -172,7 +172,7 @@ const LogoEdit: React.FC = () => {
             <InputImageField onChange={handleUpdateImage} />
             <SelectStatus onChange={handleSelectStatus} selectedStatus={props?.data?.status || "active"} />
             <img
-              src={previewImg ? previewImg : `http://localhost:3000${props?.data?.logo}`}
+              src={previewImg ? previewImg : `https://kaiyi-21d4.onrender.com${props?.data?.logo}`}
               alt="Preview"
               width={300}
               height={300}

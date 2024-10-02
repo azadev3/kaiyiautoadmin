@@ -141,7 +141,7 @@ const ModelDesignEdit: React.FC = () => {
     const [descriptionEn, setDescriptionEn] = React.useState<string>(props?.data?.description?.en || "");
     const [descriptionRu, setDescriptionRu] = React.useState<string>(props?.data?.description?.ru || "");
     const [color, setColor] = useColor(props?.data?.color || "");
-    const [previewImg, setPreviewImg] = React.useState<string>(`http://localhost:3000${props?.data?.carImage}` || "");
+    const [previewImg, setPreviewImg] = React.useState<string>(`https://kaiyi-21d4.onrender.com${props?.data?.carImage}` || "");
     const [image, setImage] = React.useState<File | null>(null);
     const [selectedStatus, setSelectedStatus] = React.useState<string>("active");
     const [selectedModel, setSelectedModel] = React.useState<string | null>(props?.data?.selected_model || "");
@@ -158,7 +158,7 @@ const ModelDesignEdit: React.FC = () => {
       setDescriptionAz(props?.data?.description?.az || "");
       setDescriptionEn(props?.data?.description?.en || "");
       setDescriptionRu(props?.data?.description?.ru || "");
-      setPreviewImg(`http://localhost:3000${props?.data?.carImage}` || "");
+      setPreviewImg(`https://kaiyi-21d4.onrender.com${props?.data?.carImage}` || "");
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 

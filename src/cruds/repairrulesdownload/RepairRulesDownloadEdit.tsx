@@ -95,7 +95,7 @@ const RepairRulesDownloadEdit: React.FC = () => {
   //EDIT MODAL
   const EditModal: React.FC<Props> = (props) => {
     //states
-    const [previewImg, setPreviewImg] = React.useState<string>(`http://localhost:3000${props?.data?.image}` || "");
+    const [previewImg, setPreviewImg] = React.useState<string>(`https://kaiyi-21d4.onrender.com${props?.data?.image}` || "");
     const [image, setImage] = React.useState<File | null>(null);
     const [titleAz, setTitleAz] = React.useState<string>(props?.data?.title?.az || "");
     const [titleEn, setTitleEn] = React.useState<string>(props?.data?.title?.en || "");

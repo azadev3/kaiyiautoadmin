@@ -106,7 +106,7 @@ const AddSocialEdit: React.FC = () => {
     const [titleRu, setTitleRu] = useState<string>(props?.data.title?.ru || "");
     const [link, setLink] = useState<string>(props?.data?.link || "");
     const [image, setImage] = useState<File | null>(null);
-    const [previewImg, setPreviewImg] = useState<string>(`http://localhost:3000${props.data.icon}`);
+    const [previewImg, setPreviewImg] = useState<string>(`https://kaiyi-21d4.onrender.com${props.data.icon}`);
     const [selectedStatus, setSelectedStatus] = React.useState<string>("active");
 
     const handleSelectStatus = (selectedOption: any) => {
@@ -119,7 +119,7 @@ const AddSocialEdit: React.FC = () => {
       setTitleEn(props?.data?.title?.en || "");
       setTitleRu(props?.data?.title?.ru || "");
       setLink(props?.data?.link || "");
-      setPreviewImg(`http://localhost:3000${props?.data?.icon}`);
+      setPreviewImg(`https://kaiyi-21d4.onrender.com${props?.data?.icon}`);
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 

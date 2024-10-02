@@ -98,7 +98,7 @@ const TrafficRulesHelpedEdit: React.FC = () => {
   //EDIT MODAL
   const EditModal: React.FC<Props> = (props) => {
     //states
-    const [previewImg, setPreviewImg] = useState<string>(`http://localhost:3000${props?.data?.image}`);
+    const [previewImg, setPreviewImg] = useState<string>(`https://kaiyi-21d4.onrender.com${props?.data?.image}`);
     const [image, setImage] = React.useState<File | null>(null);
     const [titleAz, setTitleAz] = useState<string>(props?.data?.title?.az || "");
     const [titleEn, setTitleEn] = useState<string>(props?.data.title?.en || "");
@@ -114,7 +114,7 @@ const TrafficRulesHelpedEdit: React.FC = () => {
       setTitleAz(props?.data?.title?.az || "");
       setTitleEn(props?.data?.title?.en || "");
       setTitleRu(props?.data?.title?.ru || "");
-      setPreviewImg(`http://localhost:3000${props?.data?.image}`);
+      setPreviewImg(`https://kaiyi-21d4.onrender.com${props?.data?.image}`);
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 

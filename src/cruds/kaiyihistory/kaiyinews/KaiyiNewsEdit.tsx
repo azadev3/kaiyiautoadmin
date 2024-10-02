@@ -106,7 +106,7 @@ const KaiyiNewsEdit: React.FC = () => {
   //EDIT MODAL
   const EditModal: React.FC<Props> = (props) => {
     //states
-    const [previewImg, setPreviewImg] = useState<string>(`http://localhost:3000${props?.data?.image}`);
+    const [previewImg, setPreviewImg] = useState<string>(`https://kaiyi-21d4.onrender.com${props?.data?.image}`);
     const [image, setImage] = React.useState<File | null>(null);
     const [video, setVideo] = React.useState<File | null>(null);
     const [videoPreview, setVideoPreview] = React.useState<string>("");
@@ -133,7 +133,7 @@ const KaiyiNewsEdit: React.FC = () => {
       setDescriptionAz(props?.data?.description?.az || "");
       setDescriptionEn(props?.data?.description?.en || "");
       setDescriptionRu(props?.data?.description?.ru || "");
-      setPreviewImg(`http://localhost:3000${props?.data?.image}`);
+      setPreviewImg(`https://kaiyi-21d4.onrender.com${props?.data?.image}`);
       setVideoPreview(props?.data?.video || "");
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);

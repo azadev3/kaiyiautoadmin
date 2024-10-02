@@ -112,9 +112,9 @@ const ModelsEdit: React.FC = () => {
   //EDIT MODAL
   const EditModal: React.FC<Props> = (props) => {
     //states
-    const [previewImg, setPreviewImg] = useState<string>(`http://localhost:3000${props?.data?.image}`);
+    const [previewImg, setPreviewImg] = useState<string>(`https://kaiyi-21d4.onrender.com${props?.data?.image}`);
     const [image, setImage] = React.useState<File | null>(null);
-    const [previewVideo, setPreviewVideo] = React.useState<string>(`http://localhost:3000${props?.data?.video}`);
+    const [previewVideo, setPreviewVideo] = React.useState<string>(`https://kaiyi-21d4.onrender.com${props?.data?.video}`);
     const [video, setVideo] = React.useState<File | null>(null);
     const [descriptionAz, setDescriptionAz] = React.useState<string>(props?.data?.description?.az || "");
     const [descriptionEn, setDescriptionEn] = React.useState<string>(props?.data?.description?.en || "");
@@ -142,8 +142,8 @@ const ModelsEdit: React.FC = () => {
       setSloganAz(props?.data?.slogan?.az || "");
       setSloganEn(props?.data?.slogan?.en || "");
       setSloganRu(props?.data?.slogan?.ru || "");
-      setPreviewImg(`http://localhost:3000${props?.data?.image}`);
-      setPreviewVideo(`http://localhost:3000${props?.data?.video}`);
+      setPreviewImg(`https://kaiyi-21d4.onrender.com${props?.data?.image}`);
+      setPreviewVideo(`https://kaiyi-21d4.onrender.com${props?.data?.video}`);
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 

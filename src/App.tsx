@@ -23,6 +23,7 @@ import SearchModal from "./content/SearchModal";
 import Login from "./login/Login";
 import ProtectedRoute from "./ProtectedRoute";
 import Loader from "./Loader";
+import { TbLogout2 } from "react-icons/tb";
 
 export const isToken = localStorage.getItem("kaiyi_adm_token");
 
@@ -39,13 +40,45 @@ const App: React.FC = () => {
     setLoading(false);
   }, []);
 
-
-
   const [searchModal, setSearchModal] = useRecoilState(SearchModalState);
 
   const [componentModal, setComponentModal] = useRecoilState(ComponentModalState);
   const [componentModalRefresh, setComponentModalRefresh] = useRecoilState(ComponentModalStateRefresh);
   const [componentModalRemove, setComponentModalRemove] = useRecoilState(ComponentModalStateRemove);
+
+  //settings modal
+  const [settingsModal, setSettingsModal] = React.useState<boolean>(false);
+  const handleSettingsModal = () => {
+    setSettingsModal((prev) => !prev);
+  };
+
+  //outside clicked
+  const settingsModalRef = React.useRef<HTMLDivElement | null>(null);
+  const settingsModalButtonRef = React.useRef<HTMLDivElement | null>(null);
+
+  React.useEffect(() => {
+    const outsideClicked = (e: MouseEvent) => {
+      const hasModalRef =
+        settingsModalRef && settingsModalRef?.current && !settingsModalRef?.current?.contains(e.target as Node);
+      const hasModalButtonRef =
+        settingsModalButtonRef &&
+        settingsModalButtonRef?.current &&
+        !settingsModalButtonRef?.current?.contains(e.target as Node);
+
+      if (hasModalRef && hasModalButtonRef) {
+        setSettingsModal(false);
+      }
+    };
+
+    document.addEventListener("mousedown", outsideClicked);
+    return () => document.removeEventListener("mousedown", outsideClicked);
+  }, []);
+
+  //logout
+  const handleLogOut = () => {
+    localStorage.removeItem("kaiyi_adm_token");
+    window.location.reload();
+  };
 
   if (loading) {
     return <Loader />;
@@ -81,11 +114,14 @@ const App: React.FC = () => {
                     <CiSearch className="search-icon" />
                     <input type="search" placeholder="Birşey axtar..." />
                   </div>
-                  <div className="settings">
+                  <div className="settings" onClick={handleSettingsModal} ref={settingsModalButtonRef}>
                     <img src="/settings.svg" alt="settings" />
                   </div>
-                  <div className="user">
-                    <img src="/ad.jpeg" alt="profile" />
+                  <div className={`settings-modal ${settingsModal ? "active" : ""}`} ref={settingsModalRef}>
+                    <button className="log-out-btn" onClick={handleLogOut}>
+                      <TbLogout2 className="logout" />
+                      <span>Çıxış</span>
+                    </button>
                   </div>
                 </section>
               </div>

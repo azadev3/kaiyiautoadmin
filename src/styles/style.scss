@@ -155,8 +155,6 @@ $colormain: #f3f9fc;
   justify-content: flex-start;
   flex-direction: column;
 
-
-
   .chart-area-two {
     margin-bottom: 48px;
     margin-top: 68px;
@@ -224,7 +222,9 @@ $colormain: #f3f9fc;
       }
       .pages-maped {
         width: 100%;
-        height: 300px;
+        overflow-y: auto;
+        height: auto;
+        max-height: 400px;
         overflow-y: auto;
         background-color: transparent;
         margin-top: 28px;
@@ -275,6 +275,28 @@ $colormain: #f3f9fc;
               color: #343c6a;
               font-size: 24px;
             }
+          }
+        }
+      }
+      .search-for-myparts {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 12px 0px;
+        input {
+          width: 100%;
+          height: 50px;
+          background-color: #eeefff;
+          border: 3px solid transparent;
+          outline: none;
+          cursor: pointer;
+          font-size: 16px;
+          border-radius: 12px;
+          padding: 12px;
+          padding-right: 56px;
+          transition: 100ms ease-in;
+          &:focus {
+            border: 3px solid mediumpurple;
           }
         }
       }
@@ -554,7 +576,7 @@ $colormain: #f3f9fc;
               color: #505050;
             }
           }
-    
+
           .caret-down {
             font-size: 30px;
             margin-right: 10px;
@@ -580,7 +602,7 @@ $colormain: #f3f9fc;
             color: #ffffff;
           }
         }
-    
+
         .submenu {
           width: 100%;
           opacity: 0;
@@ -594,7 +616,7 @@ $colormain: #f3f9fc;
           flex-direction: column;
           gap: 4px;
           overflow: hidden;
-    
+
           .link-submenu {
             width: 100%;
             transition: 100ms ease-in-out;
@@ -628,7 +650,6 @@ $colormain: #f3f9fc;
           }
         }
       }
-
     }
   }
 

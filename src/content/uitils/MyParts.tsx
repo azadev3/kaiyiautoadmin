@@ -1,24 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { SiPowerpages } from "react-icons/si";
 import { Link } from "react-router-dom";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { FiChevronsRight } from "react-icons/fi";
 import { SidebarLinksForUsed, SidebarLinkType } from "../../sidebar/Sidebar";
 
-// type PageData = {
-//   id: number;
-//   pagename: string;
-// };
-
 const MyParts: React.FC = () => {
-  // const Pages: PageData[] = [
-  //   { id: 1, pagename: "Hero" },
-  //   { id: 2, pagename: "Gördüyümüz işlər" },
-  //   { id: 3, pagename: "Biz kimik" },
-  //   { id: 4, pagename: "Kartlar" },
-  //   { id: 5, pagename: "Sertifikatlar" },
-  //   { id: 6, pagename: "Maillər" },
-  // ];
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Function to filter pages based on search term
+  const filteredPages = SidebarLinksForUsed.filter((page: SidebarLinkType) => {
+    const matchesPageTitle = page.title.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesDropdownItems =
+      page.isDropdown &&
+      page.dropdownItems?.some((item: any) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    return matchesPageTitle || matchesDropdownItems;
+  });
 
   return (
     <section className="my-parts">
@@ -26,18 +23,39 @@ const MyParts: React.FC = () => {
         <h3>Sürətli Giriş</h3>
         <SiPowerpages className="page-icons" />
       </div>
+
+      <div className="search-for-myparts">
+        <input type="text" placeholder="Axtar..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+      </div>
+
       <div className="pages-maped">
-        {SidebarLinksForUsed?.map((pages: SidebarLinkType, index: number) => (
-          <Link to={pages?.to} className="page-link" key={index}>
-            <div className="left">
-              <IoDocumentTextOutline className="doc-icon" />
-              <span>{pages?.title}</span>
-            </div>
-            <div className="right">
-              <FiChevronsRight className="right-icon" />
-            </div>
-          </Link>
-        ))}
+        {filteredPages.map((page: SidebarLinkType, index: number) =>
+          page.isDropdown && page.dropdownItems ? (
+            page?.dropdownItems
+              .filter((dropdownItem: any) => dropdownItem.title.toLowerCase().includes(searchTerm.toLowerCase()))
+              .map((dropdownItem: any) => (
+                <Link to={dropdownItem.to} className="page-link" key={`${index}-${dropdownItem.title}`}>
+                  <div className="left">
+                    <IoDocumentTextOutline className="doc-icon" />
+                    <span>{dropdownItem.title}</span>
+                  </div>
+                  <div className="right">
+                    <FiChevronsRight className="right-icon" />
+                  </div>
+                </Link>
+              ))
+          ) : (
+            <Link to={page.to} className="page-link" key={index}>
+              <div className="left">
+                <IoDocumentTextOutline className="doc-icon" />
+                <span>{page.title}</span>
+              </div>
+              <div className="right">
+                <FiChevronsRight className="right-icon" />
+              </div>
+            </Link>
+          )
+        )}
       </div>
     </section>
   );

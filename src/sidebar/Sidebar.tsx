@@ -26,7 +26,6 @@ export interface SidebarLinkType {
 }
 
 export const SidebarLinksForUsed: SidebarLinkType[] = [
-  { title: "Əsas", to: "/", activeLinkIcon: <FaHouse /> },
   { title: "Hero", to: "/hero", activeLinkIcon: <FaImage /> },
   { title: "Xəbər Abunəlikləri", to: "/subscribtionNews", activeLinkIcon: <FaNewspaper /> },
   { title: "Diler ol", to: "/become-dealer", activeLinkIcon: <FaTrademark /> },

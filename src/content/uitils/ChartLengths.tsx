@@ -1,5 +1,5 @@
 import React from "react";
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis } from "recharts";
+import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { SidebarLinksForUsed } from "../../sidebar/Sidebar";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -27,44 +27,36 @@ const ChartLengths: React.FC = () => {
   const data = [
     {
       name: "Səhifə",
-      uv: 4000,
       pv: SidebarLinksForUsed ? SidebarLinksForUsed?.length : 0,
-      amt: 2400,
     },
     {
-      name: "Endpoint",
-      uv: 3000,
+      name: "API'lar",
       pv: endpointLengths ? endpointLengths : 0,
-      amt: 2210,
     },
     {
-      name: "Collections",
-      uv: 2000,
+      name: "Modellər",
       pv: dbCollectionLengths ? dbCollectionLengths : 0,
-      amt: 2290,
     },
-    
   ];
 
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <BarChart
+      <AreaChart
         width={500}
-        height={300}
+        height={400}
         data={data}
         margin={{
-          top: 5,
+          top: 10,
           right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-        barSize={20}>
-        <XAxis dataKey="name" scale="point" padding={{ left: 10, right: 10 }} />
-        <Tooltip />
-        <Legend />
+          left: 0,
+          bottom: 0,
+        }}>
         <CartesianGrid strokeDasharray="3 3" />
-        <Bar dataKey="pv" fill="#8884d8" background={{ fill: "#505050" }} />
-      </BarChart>
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Area type="monotone" dataKey="pv" stroke="mediumslateblue" fill="#ffbb28" />
+      </AreaChart>
     </ResponsiveContainer>
   );
 };

@@ -24,6 +24,7 @@ import Login from "./login/Login";
 import ProtectedRoute from "./ProtectedRoute";
 import Loader from "./Loader";
 import { TbLogout2 } from "react-icons/tb";
+import "./styles/responsive.scss";
 
 export const isToken = localStorage.getItem("kaiyi_adm_token");
 

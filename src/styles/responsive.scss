@@ -1,0 +1,88 @@
+@media only screen and (max-width: 1000px) {
+     .app .admin {
+          padding: 0px 12px;
+     }
+     .overview-header-wrapper {
+          padding: 12px 24px;
+     }
+     .overview-header-wrapper .header .left-head {
+          gap: 24px;
+     }
+     .overview-header-wrapper .header .left-head .route-name {
+          font-size: 18px;
+     }
+     .overview-header-wrapper .header .right-profile {
+          gap: 24px;
+     }
+     .overview-header-wrapper .header .right-profile .search input {
+          font-size: 15px;
+          height: 45px;
+     }
+     .overview-header-wrapper .header .right-profile .settings {
+          min-width: 40px;
+          min-height: 40px;
+          height: 40px;
+          width: 40px;
+     }
+     .overview-header-wrapper .header .left-head .logo .logo-name {
+          font-size: 16px;
+          font-weight: 500;
+     }
+     .sidebar .link-area .link, .sidebar .link-area .link-with-dropdown {
+          padding: 8px 0px 8px 12px;
+     }
+     .sidebar .link-area .link .left .linkname, .sidebar .link-area .link-with-dropdown .left .linkname {
+          font-size: 15px;
+     }
+     .sidebar {
+          gap: 8px;
+     }
+     .content {
+          padding: 14px 14px;
+     }
+     .content .chart-section {
+          min-height: auto;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          flex-direction: column-reverse;
+     }
+     .content .chart-section .left-chart, .content .chart-section .right-chart {
+          width: 100%;
+     }
+     .content .top-section .my-parts .toptitle h3 {
+          font-size: 16px;
+     }
+     .content .top-section .my-parts .toptitle .page-icons {
+          font-size: 18px;
+     }
+     .sidebar {
+          max-width: 250px;
+     }
+     .titlemain .left .message p {
+          font-size: 12px;
+          line-height: 18px;
+     }
+     .titlemain .left h1 {
+          font-size: 18px;
+     }
+     .titlemain .right {
+          padding: 6px 12px;
+     }
+     .titlemain .right span {
+          font-size: 14px;
+     }
+     .route-component .show-component .shower .table-container table thead tr th {
+          padding: 9px 14px;
+     }
+     .route-component .show-component .shower .table-container table tbody tr td {
+          padding: 8px 12px;
+     }
+}
+
+@media only screen and (max-width: 700px) {
+     .app .admin {
+          min-width: 1000px;
+     }
+}

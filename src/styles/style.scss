@@ -154,7 +154,41 @@ $colormain: #f3f9fc;
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
+
+
+
+  .chart-area-two {
+    margin-bottom: 48px;
+    margin-top: 68px;
+    width: 100%;
+    min-height: 450px;
+    background-color: transparent;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 48px;
+    .title-top {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      padding-left: 24px;
+      .chart-icon {
+        font-size: 28px;
+        color: #343c6a;
+      }
+      span {
+        color: #343c6a;
+        font-weight: 600;
+        font-size: 22px;
+      }
+    }
+  }
+
   .top-section {
+    margin-top: 48px;
     width: 100%;
     background-color: transparent;
     display: flex;

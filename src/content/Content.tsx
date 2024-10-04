@@ -49,8 +49,11 @@ import AddCar from "../routes/addcar/AddCar";
 import ModelPdf from "../routes/modelinner/ModelPdf";
 import AddSocials from "../routes/addsocials/AddSocials";
 import ContactManager from "../routes/contactmanager/ContactManager";
+import HeroChart from "./uitils/ChartsforApis/HeroChart";
+import { IoBarChartOutline } from "react-icons/io5";
 
 const Content: React.FC = () => {
+
   return (
     <div className="content">
       <Routes>
@@ -65,6 +68,13 @@ const Content: React.FC = () => {
                 <div className="right-chart">
                   <ChartOthers />
                 </div>
+              </div>
+              <div className="chart-area-two">
+                <div className="title-top">
+                  <IoBarChartOutline className="chart-icon" />
+                  <span>Saytınızdakı bəzi məlumatların saylarını görün</span>
+                </div>
+                <HeroChart />
               </div>
               <div className="top-section">
                 <MyParts />

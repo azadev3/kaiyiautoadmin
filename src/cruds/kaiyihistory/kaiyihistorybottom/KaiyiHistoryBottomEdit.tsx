@@ -224,25 +224,22 @@ const KaiyiHistoryBottomEdit: React.FC = () => {
               value={titleRu}
             />
             <InputField
-              label="EY KAIYI - Aşağı hissə Açıqlama (AZ) (maksimum: 80 hərf)"
+              label="EY KAIYI - Aşağı hissə Açıqlama (AZ)"
               placeholder="Məsələn: Example data..."
               onChange={(e: ChangeEvent<HTMLInputElement>) => setDescriptionAz(e.target.value)}
               value={descriptionAz}
-              maxLength={80}
             />
             <InputField
-              label="EY KAIYI - Aşağı hissə Açıqlama (EN) (maksimum: 80 hərf)"
+              label="EY KAIYI - Aşağı hissə Açıqlama (EN)"
               placeholder="Məsələn: Example data..."
               onChange={(e: ChangeEvent<HTMLInputElement>) => setDescriptionEn(e.target.value)}
               value={descriptionEn}
-              maxLength={80}
             />
             <InputField
-              label="EY KAIYI - Aşağı hissə Açıqlama (RU) (maksimum: 80 hərf)"
+              label="EY KAIYI - Aşağı hissə Açıqlama (RU)"
               placeholder="Məsələn: Example data..."
               onChange={(e: ChangeEvent<HTMLInputElement>) => setDescriptionRu(e.target.value)}
               value={descriptionRu}
-              maxLength={80}
             />
             <InputField
               type="text"

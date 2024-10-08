@@ -25,6 +25,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import Loader from "./Loader";
 import { TbLogout2 } from "react-icons/tb";
 import "./styles/responsive.scss";
+import DarkMode from "./content/DarkMode";
 
 export const isToken = localStorage.getItem("kaiyi_adm_token");
 
@@ -124,6 +125,8 @@ const App: React.FC = () => {
                       <span>Çıxış</span>
                     </button>
                   </div>
+                  
+                  <DarkMode />
                 </section>
               </div>
             </header>

@@ -122,25 +122,22 @@ const RepairHeroCreate: React.FC = () => {
         value={titleRu}
       />
       <InputField
-        label="Təmir və Baxım - Hero Açıqlama Açıqlama (AZ) (maksimum: 80 hərf)"
+        label="Təmir və Baxım - Hero Açıqlama Açıqlama (AZ) "
         placeholder="Məsələn: Example data..."
         onChange={(e: ChangeEvent<HTMLInputElement>) => setDescriptionAz(e.target.value)}
         value={descriptionAz}
-        maxLength={80}
       />
       <InputField
-        label="Təmir və Baxım - Hero Açıqlama Açıqlama (EN) (maksimum: 80 hərf)"
+        label="Təmir və Baxım - Hero Açıqlama Açıqlama (EN) "
         placeholder="Məsələn: Example data..."
         onChange={(e: ChangeEvent<HTMLInputElement>) => setDescriptionEn(e.target.value)}
         value={descriptionEn}
-        maxLength={80}
       />
       <InputField
-        label="Təmir və Baxım - Hero Açıqlama Açıqlama (RU) (maksimum: 80 hərf)"
+        label="Təmir və Baxım - Hero Açıqlama Açıqlama (RU) "
         placeholder="Məsələn: Example data..."
         onChange={(e: ChangeEvent<HTMLInputElement>) => setDescriptionRu(e.target.value)}
         value={descriptionRu}
-        maxLength={80}
       />
 
       <InputImageField req={true} onChange={handleChange} name="img" />

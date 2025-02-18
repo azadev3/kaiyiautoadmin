@@ -130,7 +130,7 @@ const DealerContacts: React.FC = () => {
 
       <div className="test-drive-users-table">
         {hasData &&
-          dealerContactsData?.map((data: DealerContactsType) => (
+          [...dealerContactsData].reverse()?.map((data: DealerContactsType) => (
             <section key={data?._id} className="section-data">
               <FaCarOn className="car-icon" />
               <div className="user-info">

@@ -203,6 +203,7 @@ const Sidebar: React.FC = () => {
           { id: 1, title: "Şəhər əlavə et", to: "/findsales" },
           { id: 2, title: "Diler Əlavə Et", to: "/add-dealer" },
           { id: 3, title: "Dilerlə Əlaqə Yaradanlar", to: "/dealer-contacts" },
+          { id: 4, title: "Servis - Dilerlə əlaqə yaradanlar", to: "/dealer-contacts-service" },
         ]}
       />
       <SidebarLink

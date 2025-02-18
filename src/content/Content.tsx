@@ -51,6 +51,7 @@ import AddSocials from "../routes/addsocials/AddSocials";
 import ContactManager from "../routes/contactmanager/ContactManager";
 import HeroChart from "./uitils/ChartsforApis/HeroChart";
 import { IoBarChartOutline } from "react-icons/io5";
+import DealerContactsService from "../routes/findsalesno/DealerContactsService";
 
 const Content: React.FC = () => {
 
@@ -115,6 +116,7 @@ const Content: React.FC = () => {
         <Route path="/findsales" element={<AddCity />} />
         <Route path="/add-dealer" element={<AddDealer />} />
         <Route path="/dealer-contacts" element={<DealerContacts />} />
+        <Route path="/dealer-contacts-service" element={<DealerContactsService />} />
         {/* models inner tabs route */}
         <Route path="/modelvideotab" element={<ModelVideoTab />} />
         <Route path="/modeldesigntab" element={<ModelDesignTab />} />

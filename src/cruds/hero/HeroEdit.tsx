@@ -91,15 +91,15 @@ const HeroEdit: React.FC = () => {
 
   const rows = hasData
     ? fetchData.map((data: DataTypeHero) => ({
-        id: data._id,
-        titleAz: data?.title?.az,
-        titleEn: data?.title?.en,
-        titleRu: data?.title?.ru,
-        descriptionAz: data?.description?.az,
-        descriptionEn: data?.description?.en,
-        descriptionRu: data?.description?.ru,
-        status: data?.status,
-      }))
+      id: data._id,
+      titleAz: data?.title?.az,
+      titleEn: data?.title?.en,
+      titleRu: data?.title?.ru,
+      descriptionAz: data?.description?.az,
+      descriptionEn: data?.description?.en,
+      descriptionRu: data?.description?.ru,
+      status: data?.status,
+    }))
     : [];
 
   //EDIT MODAL
@@ -170,16 +170,9 @@ const HeroEdit: React.FC = () => {
 
       setLoading(true);
 
-      if (!image || !miniImage) {
-        toast.warning("Xana və ya xanalar boş olmamalıdır.", {
-          position: "top-center",
-        });
-        return;
-      }
-
       const formData = new FormData();
-      formData.append("img", image);
-      formData.append("miniImg", miniImage);
+      formData.append("img", image || "");
+      formData.append("miniImg", miniImage || "");
       formData.append("title_az", titleAz);
       formData.append("title_en", titleEn);
       formData.append("title_ru", titleRu);
@@ -268,10 +261,10 @@ const HeroEdit: React.FC = () => {
               maxLength={80}
             />
 
-            <InputImageField onChange={handleUpdateImage} name="img" />
+            <InputImageField req={true} onChange={handleUpdateImage} name="img" />
             {previewImg && <img src={previewImg} alt="Preview" style={{ maxWidth: "200px", marginTop: "10px" }} />}
 
-            <InputImageField onChange={handleChangeMiniImage} name="miniImg" />
+            <InputImageField req={true} onChange={handleChangeMiniImage} name="miniImg" />
             {previewMiniImg && (
               <img
                 src={previewMiniImg}

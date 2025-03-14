@@ -116,15 +116,8 @@ const LogoEdit: React.FC = () => {
 
       setLoading(true);
 
-      if (!image) {
-        toast.warning("Xana və ya xanalar boş olmamalıdır.", {
-          position: "top-center",
-        });
-        return;
-      }
-
       const formData = new FormData();
-      formData.append("img", image);
+      formData.append("img", image || "");
       formData.append("status", selectedStatus);
 
       try {
@@ -169,7 +162,7 @@ const LogoEdit: React.FC = () => {
         </div>
         <div className="edit-container">
           <form acceptCharset="UTF-8" onSubmit={(e: React.FormEvent) => handleEdit(e, props?.data?._id)}>
-            <InputImageField onChange={handleUpdateImage} />
+            <InputImageField req={true} onChange={handleUpdateImage} />
             <SelectStatus onChange={handleSelectStatus} selectedStatus={props?.data?.status || "active"} />
             <img
               src={previewImg ? previewImg : `https://kaiyi-21d4.onrender.com${props?.data?.logo}`}

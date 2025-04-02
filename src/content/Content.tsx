@@ -52,6 +52,7 @@ import ContactManager from "../routes/contactmanager/ContactManager";
 import HeroChart from "./uitils/ChartsforApis/HeroChart";
 import { IoBarChartOutline } from "react-icons/io5";
 import DealerContactsService from "../routes/findsalesno/DealerContactsService";
+import AddSeo from "../routes/seo_optimizations/AddSeo";
 
 const Content: React.FC = () => {
 
@@ -155,6 +156,7 @@ const Content: React.FC = () => {
         <Route path="/add-car" element={<AddCar />} />
         <Route path="/add-socials" element={<AddSocials />} />
         <Route path="/contact-manager" element={<ContactManager />} />
+        <Route path="/add-seo" element={<AddSeo />} />
       </Routes>
     </div>
   );

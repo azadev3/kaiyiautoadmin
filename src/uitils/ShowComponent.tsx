@@ -41,6 +41,7 @@ import AddCarShow from "../cruds/addcar/AddCarShow";
 import ModelPdfShow from "../cruds/modelinnertabs/modelpdf/ModelPdfShow";
 import RepairRulesDownloadShow from "../cruds/repairrulesdownload/RepairRulesDownloadShow";
 import AddSocialShow from "../cruds/addsocials/AddSocialShow";
+import AddSeoShow from "../cruds/addseo/AddSeoShow";
 
 const ShowComponent: React.FC = () => {
   const location = useLocation();
@@ -129,6 +130,8 @@ const ShowComponent: React.FC = () => {
         return <ModelPdfShow />;
       case "/add-socials":
         return <AddSocialShow />;
+      case "/add-seo":
+        return <AddSeoShow />;
       default:
         return <div>Bu rotada component mövcud deyil.</div>;
     }

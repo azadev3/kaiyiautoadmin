@@ -15,6 +15,7 @@ import { FaCarCrash } from "react-icons/fa";
 import { IoShareSocialSharp } from "react-icons/io5";
 import { GrUserManager } from "react-icons/gr";
 import { ReactNode } from "react";
+import { TbSeo } from "react-icons/tb";
 
 // SidebarLinks for any used
 export interface SidebarLinkType {
@@ -161,6 +162,7 @@ const Sidebar: React.FC = () => {
         <BsLayoutSidebarInset className="collapse-sidebar" onClick={toggleSidebar} />
       )} */}
       <SidebarLink title="Əsas" to="/" activeLinkIcon={<FaHouse />} />
+      <SidebarLink title="SEO" to="/add-seo" activeLinkIcon={<TbSeo />} />
       <SidebarLink title="Hero" to="/hero" activeLinkIcon={<FaImage />} />
       <SidebarLink title="Xəbər Abunəlikləri" to="/subscribtionNews" activeLinkIcon={<FaNewspaper />} />
       <SidebarLink title="Diler ol" to="/become-dealer" activeLinkIcon={<FaTrademark />} />

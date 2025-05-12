@@ -47,7 +47,7 @@ export interface DataTypeCar {
     en: string;
     ru: string;
   };
-  color: string;
+  color: any;
   selected_model: string;
   status: string;
 }

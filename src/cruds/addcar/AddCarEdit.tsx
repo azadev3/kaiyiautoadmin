@@ -112,16 +112,16 @@ const AddCarEdit: React.FC = () => {
 
   const rows = hasData
     ? fetchData.map((data: DataTypeCar) => ({
-        id: data?._id,
-        titleAz: data?.title?.az,
-        titleEn: data?.title?.en,
-        titleRu: data?.title?.ru,
-        year: data?.year,
-        vin: data?.vin,
-        price: data?.price,
-        selected_model: data?.selected_model,
-        status: data?.status,
-      }))
+      id: data?._id,
+      titleAz: data?.title?.az,
+      titleEn: data?.title?.en,
+      titleRu: data?.title?.ru,
+      year: data?.year,
+      vin: data?.vin,
+      price: data?.price,
+      selected_model: data?.selected_model,
+      status: data?.status,
+    }))
     : [];
 
   // EDIT MODAL
@@ -150,7 +150,7 @@ const AddCarEdit: React.FC = () => {
     const [miniDescEn, setMiniDescEn] = React.useState<string>(props?.data?.miniDesc?.en || "");
     const [miniDescRu, setMiniDescRu] = React.useState<string>(props?.data?.miniDesc?.ru || "");
 
-    const [color, setColor] = useColor("");
+    const [color, setColor] = useColor(props?.data?.color || "#000000");
     const [selectedModel, setSelectedModel] = React.useState<string>(props?.data?.selected_model || "");
 
     const [selectedStatus, setSelectedStatus] = React.useState<string>(props?.data?.status || "active");
@@ -181,6 +181,27 @@ const AddCarEdit: React.FC = () => {
       setInStockRu(props?.data?.inStock?.ru || "");
     }, [props?.data]);
 
+    React.useEffect(() => {
+      if (props?.data?.color) {
+        setColor({
+          hex: props.data.color,
+          rgb: {
+            r: 255,
+            g: 255,
+            b: 255,
+            a: 1,
+          },
+          hsv: {
+            h: 0,
+            s: 0,
+            v: 100,
+            a: 1,
+          },
+        });
+      }
+    }, [props?.data?.color]);
+
+
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       if (e.target && e.target.files) {
         const file = e.target.files[0];
@@ -200,10 +221,10 @@ const AddCarEdit: React.FC = () => {
       setLoading(true);
 
       if (!color || !image || !titleAz || !titleEn || !titleRu || !price || !inStockAz || !inStockEn || !inStockRu) {
-        toast.warning("Başlıqlar, şəkil və qiymət boş ola bilməz.", {
+        toast.info("Başlıqlar, şəkil və qiymət dəyişdirilmədi", {
           position: "top-center",
         });
-      } else if (color?.hex === props?.data?.color) {
+      } else if (color?.hex === props?.data?.color?.hex) {
         toast.warning("Bu rəng seçilmişdi, başqa rəng seçin.", {
           position: "top-center",
         });
@@ -409,7 +430,7 @@ const AddCarEdit: React.FC = () => {
               placeholder="Bu video hansı model içərisində göstərilsin? Seçin..."
             />
 
-            <InputImageField req={false} labelTitle="Maşının şəkilini yükləyin" onChange={handleChange} name="img" />
+            <InputImageField req={true} labelTitle="Maşının şəkilini yükləyin" onChange={handleChange} name="img" />
             {previewImg && <img src={previewImg} alt="Preview" style={{ maxWidth: "200px", marginTop: "10px" }} />}
 
             <SelectStatus onChange={handleSelectStatus} selectedStatus={props?.data?.status || "active"} />

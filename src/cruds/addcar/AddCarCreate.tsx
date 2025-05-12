@@ -319,7 +319,7 @@ const AddCarCreate: React.FC = () => {
         placeholder="Bu maşın hansı modelə aiddir?"
       />
 
-      <InputImageField req={false} labelTitle="Maşının şəkilini yükləyin" onChange={handleChange} name="img" />
+      <InputImageField req={true} labelTitle="Maşının şəkilini yükləyin" onChange={handleChange} name="img" />
       {previewImg && <img src={previewImg} alt="Preview" style={{ maxWidth: "200px", marginTop: "10px" }} />}
       <ButtonSubmit isLoading={loading} />
     </form>

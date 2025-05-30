@@ -12,7 +12,7 @@ const Login: React.FC = () => {
   const [loading, setLoading] = React.useState<boolean>(false);
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
-  const [_, setIsAuth] = useRecoilState(IsAuthState);
+  const [, setIsAuth] = useRecoilState(IsAuthState);
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {

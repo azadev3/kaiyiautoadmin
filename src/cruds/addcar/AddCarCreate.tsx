@@ -97,7 +97,7 @@ const AddCarCreate: React.FC = () => {
     setLoading(true);
 
     if (!color || !image || !titleAz || !titleEn || !titleRu || !price || !inStockAz || !inStockEn || !inStockRu) {
-      toast.warning("Başlıqlar, şəkil və qiymət boş ola bilməz.", {
+      toast.info("Başlıqlar, şəkil və qiymət dəyişdirilmədi", {
         position: "top-center",
       });
     }
@@ -167,13 +167,6 @@ const AddCarCreate: React.FC = () => {
       toast.error("Bir problem oldu.", {
         position: "top-center",
       });
-      if (axios.isAxiosError(error)) {
-        if (error.response?.status === 400) {
-          toast.error("Bu rəng çox güman ki, istifadə olunur. Başqa rəng əlavə edin", {
-            position: "top-center",
-          });
-        }
-      }
     } finally {
       setLoading(true);
       const timeout = setTimeout(() => {
@@ -321,6 +314,8 @@ const AddCarCreate: React.FC = () => {
 
       <InputImageField req={true} labelTitle="Maşının şəkilini yükləyin" onChange={handleChange} name="img" />
       {previewImg && <img src={previewImg} alt="Preview" style={{ maxWidth: "200px", marginTop: "10px" }} />}
+
+
       <ButtonSubmit isLoading={loading} />
     </form>
   );

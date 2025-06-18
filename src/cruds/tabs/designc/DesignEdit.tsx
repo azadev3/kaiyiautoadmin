@@ -87,24 +87,24 @@ const DesignEdit: React.FC = () => {
 
   const rows = hasData
     ? fetchData.map((data: DataTypeDesign) => ({
-        id: data._id,
-        titleAz: data?.title?.az,
-        titleEn: data?.title?.en,
-        titleRu: data?.title?.ru,
-        descriptionAz: data?.description?.az,
-        descriptionEn: data?.description?.en,
-        descriptionRu: data?.description?.ru,
-        status: data?.status,
-      }))
+      id: data._id,
+      titleAz: data?.title?.az,
+      titleEn: data?.title?.en,
+      titleRu: data?.title?.ru,
+      descriptionAz: data?.description?.az,
+      descriptionEn: data?.description?.en,
+      descriptionRu: data?.description?.ru,
+      status: data?.status,
+    }))
     : [];
 
   //EDIT MODAL
   const EditModal: React.FC<Props> = (props) => {
     //states
 
-    const [previewImg, setPreviewImg] = useState<string>(`https://kaiyi-21d4.onrender.com${props?.data?.image}`);
+    const [previewImg, setPreviewImg] = useState<string>(`https://kaiyi-21d4.onrender.com${props?.data?.image}` || "");
     const [image, setImage] = React.useState<File | null>(null);
-    const [previewVideo, setPreviewVideo] = React.useState<string>(`https://kaiyi-21d4.onrender.com${props?.data?.video}`);
+    const [previewVideo, setPreviewVideo] = React.useState<string>(`https://kaiyi-21d4.onrender.com${props?.data?.video}` || "");
     const [video, setVideo] = React.useState<File | null>(null);
 
     const [descriptionAz, setDescriptionAz] = React.useState<string>(props?.data?.description?.az || "");
@@ -132,8 +132,8 @@ const DesignEdit: React.FC = () => {
       setDescriptionAz(props?.data?.description?.az || "");
       setDescriptionEn(props?.data?.description?.en || "");
       setDescriptionRu(props?.data?.description?.ru || "");
-      setPreviewImg(`https://kaiyi-21d4.onrender.com${props?.data?.image}`);
-      setPreviewVideo(`https://kaiyi-21d4.onrender.com${props?.data?.video}`);
+      setPreviewImg(`https://kaiyi-21d4.onrender.com${props?.data?.image}` || "");
+      setPreviewVideo(`https://kaiyi-21d4.onrender.com${props?.data?.video}` || "");
       setSelectedStatus(props?.data?.status || "active");
       setSelectedOption(props?.data?.selectedOption || "");
     }, [props?.data]);
@@ -168,18 +168,10 @@ const DesignEdit: React.FC = () => {
 
     const handleEdit = async (e: React.FormEvent, id: string) => {
       e.preventDefault();
-
       setLoading(true);
 
-      if (!image) {
-        toast.warning("Xana və ya xanalar boş olmamalıdır.", {
-          position: "top-center",
-        });
-        return;
-      }
-
       const formData = new FormData();
-      formData.append("img", image);
+      formData.append("img", image ? image : "");
       formData.append("video", video ? video : "");
       formData.append("title_az", titleAz);
       formData.append("title_en", titleEn);
@@ -270,7 +262,7 @@ const DesignEdit: React.FC = () => {
               maxLength={80}
             />
 
-            <InputImageField onChange={handleUpdateImage} name="img" />
+            <InputImageField req={true} onChange={handleUpdateImage} name="img" />
             {previewImg && <img src={previewImg} alt="Preview" style={{ maxWidth: "200px", marginTop: "10px" }} />}
 
             <InputImageField req={true} onChange={handleChangevideo} name="video" accepting={"video/*"} />

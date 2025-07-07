@@ -136,7 +136,7 @@ const ModelPdfShow: React.FC = () => {
                     </td>
                     <td>{data?._id}</td>
                     <td>
-                      <Link target="_blank" to={`https://kaiyi-21d4.onrender.com${data?.pdf}`}>
+                      <Link target="_blank" to={`https://84.247.172.49/api/v2${data?.pdf}`}>
                         {data?.pdf}
                       </Link>
                     </td>
@@ -183,7 +183,7 @@ const ModelPdfShow: React.FC = () => {
                   <tr>
                     <td title={isTableModal?._id}>{isTableModal?._id}</td>
                     <td title={isTableModal?.pdf}>
-                      <Link target="_blank" to={`https://kaiyi-21d4.onrender.com${isTableModal?.pdf}`}>
+                      <Link target="_blank" to={`https://84.247.172.49/api/v2${isTableModal?.pdf}`}>
                         {isTableModal?.pdf}
                       </Link>
                     </td>

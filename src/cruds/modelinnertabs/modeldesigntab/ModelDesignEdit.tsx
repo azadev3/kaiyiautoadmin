@@ -141,7 +141,7 @@ const ModelDesignEdit: React.FC = () => {
     const [descriptionEn, setDescriptionEn] = React.useState<string>(props?.data?.description?.en || "");
     const [descriptionRu, setDescriptionRu] = React.useState<string>(props?.data?.description?.ru || "");
     const [color, setColor] = useColor(props?.data?.color || "");
-    const [previewImg, setPreviewImg] = React.useState<string>(`https://84.247.172.49/api/v2${props?.data?.carImage}` || "");
+    const [previewImg, setPreviewImg] = React.useState<string>(`${endpoint}${props?.data?.carImage}` || "");
     const [image, setImage] = React.useState<File | null>(null);
     const [selectedStatus, setSelectedStatus] = React.useState<string>("active");
     const [selectedModel, setSelectedModel] = React.useState<string | null>(props?.data?.selected_model || "");
@@ -158,7 +158,7 @@ const ModelDesignEdit: React.FC = () => {
       setDescriptionAz(props?.data?.description?.az || "");
       setDescriptionEn(props?.data?.description?.en || "");
       setDescriptionRu(props?.data?.description?.ru || "");
-      setPreviewImg(`https://84.247.172.49/api/v2${props?.data?.carImage}` || "");
+      setPreviewImg(`${endpoint}${props?.data?.carImage}` || "");
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 

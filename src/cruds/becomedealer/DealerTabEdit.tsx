@@ -99,7 +99,7 @@ const DealerTabEdit: React.FC = () => {
   //EDIT MODAL
   const EditModal: React.FC<Props> = (props) => {
     //states
-    const [previewImg, setPreviewImg] = useState<string>(`https://84.247.172.49/api/v2${props?.data?.image}`);
+    const [previewImg, setPreviewImg] = useState<string>(`${endpoint}${props?.data?.image}`);
     const [image, setImage] = React.useState<File | null>(null);
     const [titleAz, setTitleAz] = useState<string>(props?.data?.title?.az || "");
     const [titleEn, setTitleEn] = useState<string>(props?.data.title?.en || "");
@@ -115,7 +115,7 @@ const DealerTabEdit: React.FC = () => {
       setTitleAz(props?.data?.title?.az || "");
       setTitleEn(props?.data?.title?.en || "");
       setTitleRu(props?.data?.title?.ru || "");
-      setPreviewImg(`https://84.247.172.49/api/v2${props?.data?.image}`);
+      setPreviewImg(`${endpoint}${props?.data?.image}`);
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 

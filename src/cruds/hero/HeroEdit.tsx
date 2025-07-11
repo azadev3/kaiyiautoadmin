@@ -105,10 +105,10 @@ const HeroEdit: React.FC = () => {
   //EDIT MODAL
   const EditModal: React.FC<Props> = (props) => {
     //states
-    const [previewImg, setPreviewImg] = useState<string>(`https://84.247.172.49/api/v2${props?.data?.image}`);
+    const [previewImg, setPreviewImg] = useState<string>(`${endpoint}${props?.data?.image}`);
     const [image, setImage] = React.useState<File | null>(null);
     const [previewMiniImg, setPreviewMiniImg] = React.useState<string>(
-      `https://84.247.172.49/api/v2${props?.data?.miniImage}`
+      `${endpoint}${props?.data?.miniImage}`
     );
     const [miniImage, setMiniImage] = React.useState<File | null>(null);
     const [descriptionAz, setDescriptionAz] = React.useState<string>(props?.data?.description?.az || "");
@@ -132,8 +132,8 @@ const HeroEdit: React.FC = () => {
       setDescriptionAz(props?.data?.description?.az || "");
       setDescriptionEn(props?.data?.description?.en || "");
       setDescriptionRu(props?.data?.description?.ru || "");
-      setPreviewImg(`https://84.247.172.49/api/v2${props?.data?.image}`);
-      setPreviewMiniImg(`https://84.247.172.49/api/v2${props?.data?.miniImage}`);
+      setPreviewImg(`${endpoint}${props?.data?.image}`);
+      setPreviewMiniImg(`${endpoint}${props?.data?.miniImage}`);
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 

@@ -165,7 +165,7 @@ const LogoEdit: React.FC = () => {
             <InputImageField req={true} onChange={handleUpdateImage} />
             <SelectStatus onChange={handleSelectStatus} selectedStatus={props?.data?.status || "active"} />
             <img
-              src={previewImg ? previewImg : `https://84.247.172.49/api/v2${props?.data?.logo}`}
+              src={previewImg ? previewImg : `${endpoint}${props?.data?.logo}`}
               alt="Preview"
               width={300}
               height={300}

@@ -136,7 +136,7 @@ const ModelSecTabEdit: React.FC = () => {
     const [descriptionAz, setDescriptionAz] = React.useState<string>(props?.data?.description?.az || "");
     const [descriptionEn, setDescriptionEn] = React.useState<string>(props?.data?.description?.en || "");
     const [descriptionRu, setDescriptionRu] = React.useState<string>(props?.data?.description?.ru || "");
-    const [previewImg, setPreviewImg] = React.useState<string>(`https://84.247.172.49/api/v2${props?.data?.image}` || "");
+    const [previewImg, setPreviewImg] = React.useState<string>(`${endpoint}${props?.data?.image}` || "");
     const [image, setImage] = React.useState<File | null>(null);
     const [selectedStatus, setSelectedStatus] = React.useState<string>("active");
     const [selectedModel, setSelectedModel] = React.useState<string | null>(props?.data?.selected_model || "");
@@ -153,7 +153,7 @@ const ModelSecTabEdit: React.FC = () => {
       setDescriptionAz(props?.data?.description?.az || "");
       setDescriptionEn(props?.data?.description?.en || "");
       setDescriptionRu(props?.data?.description?.ru || "");
-      setPreviewImg(`https://84.247.172.49/api/v2${props?.data?.image}` || "");
+      setPreviewImg(`${endpoint}${props?.data?.image}` || "");
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 

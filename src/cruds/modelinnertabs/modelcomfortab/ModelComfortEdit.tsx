@@ -119,7 +119,7 @@ const ModelComfortEdit: React.FC = () => {
   //EDIT MODAL
   const EditModal: React.FC<Props> = (props) => {
     //states
-    const [previewImg, setPreviewImg] = React.useState<string>(`https://84.247.172.49/api/v2${props?.data?.image}` || "");
+    const [previewImg, setPreviewImg] = React.useState<string>(`${endpoint}${props?.data?.image}` || "");
     const [image, setImage] = React.useState<File | null>(null);
     const [selectedStatus, setSelectedStatus] = React.useState<string>("active");
     const [selectedModel, setSelectedModel] = React.useState<string | null>(props?.data?.selected_model || "");
@@ -130,7 +130,7 @@ const ModelComfortEdit: React.FC = () => {
 
     //fill the defaul values
     useEffect(() => {
-      setPreviewImg(`https://84.247.172.49/api/v2${props?.data?.image}` || "");
+      setPreviewImg(`${endpoint}${props?.data?.image}` || "");
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 

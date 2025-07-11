@@ -125,7 +125,7 @@ const ModelVideoEdit: React.FC = () => {
   const EditModal: React.FC<Props> = (props) => {
     //states
     const [video, setVideo] = React.useState<File | null>(null);
-    const [previewVideo, setPreviewVideo] = React.useState<string>(`https://84.247.172.49/api/v2${props?.data?.video}`);
+    const [previewVideo, setPreviewVideo] = React.useState<string>(`${endpoint}${props?.data?.video}`);
     const [titleAz, setTitleAz] = useState<string>(props?.data?.title?.az || "");
     const [titleEn, setTitleEn] = useState<string>(props?.data.title?.en || "");
     const [titleRu, setTitleRu] = useState<string>(props?.data.title?.ru || "");
@@ -141,7 +141,7 @@ const ModelVideoEdit: React.FC = () => {
       setTitleAz(props?.data?.title?.az || "");
       setTitleEn(props?.data?.title?.en || "");
       setTitleRu(props?.data?.title?.ru || "");
-      setPreviewVideo(`https://84.247.172.49/api/v2${props?.data?.video}`);
+      setPreviewVideo(`${endpoint}${props?.data?.video}`);
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 

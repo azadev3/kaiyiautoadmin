@@ -106,7 +106,7 @@ const AddSocialEdit: React.FC = () => {
     const [titleRu, setTitleRu] = useState<string>(props?.data.title?.ru || "");
     const [link, setLink] = useState<string>(props?.data?.link || "");
     const [image, setImage] = useState<File | null>(null);
-    const [previewImg, setPreviewImg] = useState<string>(`https://84.247.172.49/api/v2${props.data.icon}`);
+    const [previewImg, setPreviewImg] = useState<string>(`${endpoint}${props.data.icon}`);
     const [selectedStatus, setSelectedStatus] = React.useState<string>("active");
 
     const handleSelectStatus = (selectedOption: any) => {
@@ -119,7 +119,7 @@ const AddSocialEdit: React.FC = () => {
       setTitleEn(props?.data?.title?.en || "");
       setTitleRu(props?.data?.title?.ru || "");
       setLink(props?.data?.link || "");
-      setPreviewImg(`https://84.247.172.49/api/v2${props?.data?.icon}`);
+      setPreviewImg(`${endpoint}${props?.data?.icon}`);
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 

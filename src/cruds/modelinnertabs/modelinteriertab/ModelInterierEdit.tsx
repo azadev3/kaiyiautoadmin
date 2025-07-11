@@ -135,7 +135,7 @@ const ModelInterierEdit: React.FC = () => {
     const [modelTitleAz, setModelTitleAz] = React.useState<string>(props?.data?.modelTitle?.az || "");
     const [modelTitleEn, setModelTitleEn] = React.useState<string>(props?.data?.modelTitle?.en || "");
     const [modelTitleRu, setModelTitleRu] = React.useState<string>(props?.data?.modelTitle?.ru || "");
-    const [previewImg, setPreviewImg] = React.useState<string>(`https://84.247.172.49/api/v2${props?.data?.image}` || "");
+    const [previewImg, setPreviewImg] = React.useState<string>(`${endpoint}${props?.data?.image}` || "");
     const [image, setImage] = React.useState<File | null>(null);
     const [selectedStatus, setSelectedStatus] = React.useState<string>("active");
     const [selectedModel, setSelectedModel] = React.useState<string | null>(props?.data?.selected_model || "");
@@ -152,7 +152,7 @@ const ModelInterierEdit: React.FC = () => {
       setModelTitleAz(props?.data?.modelTitle?.az || "");
       setModelTitleEn(props?.data?.modelTitle?.en || "");
       setModelTitleRu(props?.data?.modelTitle?.ru || "");
-      setPreviewImg(`https://84.247.172.49/api/v2${props?.data?.image}` || "");
+      setPreviewImg(`${endpoint}${props?.data?.image}` || "");
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 

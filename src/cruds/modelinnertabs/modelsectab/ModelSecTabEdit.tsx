@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { MdEdit, MdSignalWifiStatusbar3Bar, MdSignalWifiStatusbarNotConnected } from "react-icons/md";
 import { EditModalState, LoadingState } from "../../../recoil/atoms";
-import { endpoint } from "../../../Baseurl";
+import { baseImage, endpoint } from "../../../Baseurl";
 import InputField from "../../../uitils/ui/InputField";
 import InputImageField from "../../../uitils/ui/InputImageField";
 import SelectStatus from "../../../uitils/ui/SelectStatus";
@@ -136,7 +136,7 @@ const ModelSecTabEdit: React.FC = () => {
     const [descriptionAz, setDescriptionAz] = React.useState<string>(props?.data?.description?.az || "");
     const [descriptionEn, setDescriptionEn] = React.useState<string>(props?.data?.description?.en || "");
     const [descriptionRu, setDescriptionRu] = React.useState<string>(props?.data?.description?.ru || "");
-    const [previewImg, setPreviewImg] = React.useState<string>(`${endpoint}${props?.data?.image}` || "");
+    const [previewImg, setPreviewImg] = React.useState<string>(`${baseImage}${props?.data?.image}` || "");
     const [image, setImage] = React.useState<File | null>(null);
     const [selectedStatus, setSelectedStatus] = React.useState<string>("active");
     const [selectedModel, setSelectedModel] = React.useState<string | null>(props?.data?.selected_model || "");
@@ -153,7 +153,7 @@ const ModelSecTabEdit: React.FC = () => {
       setDescriptionAz(props?.data?.description?.az || "");
       setDescriptionEn(props?.data?.description?.en || "");
       setDescriptionRu(props?.data?.description?.ru || "");
-      setPreviewImg(`${endpoint}${props?.data?.image}` || "");
+      setPreviewImg(`${baseImage}${props?.data?.image}` || "");
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 

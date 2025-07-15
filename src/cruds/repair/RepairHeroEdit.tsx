@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { MdEdit, MdSignalWifiStatusbar3Bar, MdSignalWifiStatusbarNotConnected } from "react-icons/md";
 import { DataTypeRepairHero } from "./RepairHeroShow";
-import { endpoint } from "../../Baseurl";
+import { baseImage, endpoint } from "../../Baseurl";
 import { EditModalState, LoadingState } from "../../recoil/atoms";
 import InputField from "../../uitils/ui/InputField";
 import InputImageField from "../../uitils/ui/InputImageField";
@@ -90,21 +90,21 @@ const RepairHeroEdit: React.FC = () => {
 
   const rows = hasData
     ? fetchData.map((data: DataTypeRepairHero) => ({
-        id: data._id,
-        titleAz: data?.title?.az,
-        titleEn: data?.title?.en,
-        titleRu: data?.title?.ru,
-        descriptionAz: data?.description?.az,
-        descriptionEn: data?.description?.en,
-        descriptionRu: data?.description?.ru,
-        status: data?.status,
-      }))
+      id: data._id,
+      titleAz: data?.title?.az,
+      titleEn: data?.title?.en,
+      titleRu: data?.title?.ru,
+      descriptionAz: data?.description?.az,
+      descriptionEn: data?.description?.en,
+      descriptionRu: data?.description?.ru,
+      status: data?.status,
+    }))
     : [];
 
   //EDIT MODAL
   const EditModal: React.FC<Props> = (props) => {
     //states
-    const [previewImg, setPreviewImg] = useState<string>(`${endpoint}${props?.data?.image}`);
+    const [previewImg, setPreviewImg] = useState<string>(`${baseImage}${props?.data?.image}`);
     const [image, setImage] = React.useState<File | null>(null);
     const [descriptionAz, setDescriptionAz] = React.useState<string>(props?.data?.description?.az || "");
     const [descriptionEn, setDescriptionEn] = React.useState<string>(props?.data?.description?.en || "");
@@ -126,7 +126,7 @@ const RepairHeroEdit: React.FC = () => {
       setDescriptionAz(props?.data?.description?.az || "");
       setDescriptionEn(props?.data?.description?.en || "");
       setDescriptionRu(props?.data?.description?.ru || "");
-      setPreviewImg(`${endpoint}${props?.data?.image}`);
+      setPreviewImg(`${baseImage}${props?.data?.image}`);
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 

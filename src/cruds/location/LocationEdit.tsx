@@ -1,6 +1,6 @@
 import { useEffect, useState, ChangeEvent } from "react";
 import React from "react";
-import { endpoint } from "../../Baseurl";
+import { baseImage, endpoint } from "../../Baseurl";
 import axios from "axios";
 import Loader from "../../Loader";
 import { IoChevronBackOutline } from "react-icons/io5";
@@ -103,7 +103,7 @@ const LocationEdit: React.FC = () => {
     const [titleEn, setTitleEn] = useState<string>(props?.data.title?.en || "");
     const [titleRu, setTitleRu] = useState<string>(props?.data.title?.ru || "");
     const [image, setImage] = useState<File | null>(null);
-    const [previewImg, setPreviewImg] = useState<string>(`${endpoint}${props.data.icon}`);
+    const [previewImg, setPreviewImg] = useState<string>(`${baseImage}${props.data.icon}`);
     const [selectedStatus, setSelectedStatus] = React.useState<string>("active");
 
     const handleSelectStatus = (selectedOption: any) => {
@@ -115,7 +115,7 @@ const LocationEdit: React.FC = () => {
       setTitleAz(props?.data?.title?.az || "");
       setTitleEn(props?.data?.title?.en || "");
       setTitleRu(props?.data?.title?.ru || "");
-      setPreviewImg(`${endpoint}${props?.data?.icon}`);
+      setPreviewImg(`${baseImage}${props?.data?.icon}`);
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 

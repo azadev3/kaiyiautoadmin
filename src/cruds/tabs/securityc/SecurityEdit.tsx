@@ -8,7 +8,7 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { MdEdit, MdSignalWifiStatusbar3Bar, MdSignalWifiStatusbarNotConnected } from "react-icons/md";
 import { EditModalState, LoadingState } from "../../../recoil/atoms";
 import { useQuery } from "@tanstack/react-query";
-import { endpoint } from "../../../Baseurl";
+import { baseImage, endpoint } from "../../../Baseurl";
 import ButtonSubmit from "../../../uitils/ui/ButtonSubmit";
 import Loader from "../../../Loader";
 import InputImageField from "../../../uitils/ui/InputImageField";
@@ -102,9 +102,9 @@ const SecurityEdit: React.FC = () => {
   const EditModal: React.FC<Props> = (props) => {
     //states
 
-    const [previewImg, setPreviewImg] = useState<string>(`${endpoint}${props?.data?.image}`);
+    const [previewImg, setPreviewImg] = useState<string>(`${baseImage}${props?.data?.image}`);
     const [image, setImage] = React.useState<File | null>(null);
-    const [previewVideo, setPreviewVideo] = React.useState<string>(`${endpoint}${props?.data?.video}`);
+    const [previewVideo, setPreviewVideo] = React.useState<string>(`${baseImage}${props?.data?.video}`);
     const [video, setVideo] = React.useState<File | null>(null);
 
     const [descriptionAz, setDescriptionAz] = React.useState<string>(props?.data?.description?.az || "");
@@ -130,8 +130,8 @@ const SecurityEdit: React.FC = () => {
       setDescriptionAz(props?.data?.description?.az || "");
       setDescriptionEn(props?.data?.description?.en || "");
       setDescriptionRu(props?.data?.description?.ru || "");
-      setPreviewImg(`${endpoint}${props?.data?.image}`);
-      setPreviewVideo(`${endpoint}${props?.data?.video}`);
+      setPreviewImg(`${baseImage}${props?.data?.image}`);
+      setPreviewVideo(`${baseImage}${props?.data?.video}`);
       setSelectedStatus(props?.data?.status || "active");
       setSelectedOption(props?.data?.selectedOption || "");
     }, [props?.data]);

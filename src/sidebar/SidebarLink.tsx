@@ -35,7 +35,7 @@ const SidebarLink: React.FC<props> = (props) => {
     }
   }, [location, props?.dropdownItems]);
 
-  const [_, setSearchModal] = useRecoilState(SearchModalState);
+  const [, setSearchModal] = useRecoilState(SearchModalState);
 
   return (
     <div className="link-area">

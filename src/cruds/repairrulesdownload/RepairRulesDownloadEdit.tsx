@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { MdEdit, MdSignalWifiStatusbar3Bar, MdSignalWifiStatusbarNotConnected } from "react-icons/md";
-import { endpoint } from "../../Baseurl";
+import { baseImage, endpoint } from "../../Baseurl";
 import { EditModalState, LoadingState } from "../../recoil/atoms";
 import InputImageField from "../../uitils/ui/InputImageField";
 import SelectStatus from "../../uitils/ui/SelectStatus";
@@ -95,7 +95,7 @@ const RepairRulesDownloadEdit: React.FC = () => {
   //EDIT MODAL
   const EditModal: React.FC<Props> = (props) => {
     //states
-    const [previewImg, setPreviewImg] = React.useState<string>(`${endpoint}${props?.data?.image}` || "");
+    const [previewImg, setPreviewImg] = React.useState<string>(`${baseImage}${props?.data?.image}` || "");
     const [image, setImage] = React.useState<File | null>(null);
     const [titleAz, setTitleAz] = React.useState<string>(props?.data?.title?.az || "");
     const [titleEn, setTitleEn] = React.useState<string>(props?.data?.title?.en || "");
@@ -115,6 +115,7 @@ const RepairRulesDownloadEdit: React.FC = () => {
       setTitleEn(props?.data?.title?.en || "");
       setTitleRu(props?.data?.title?.ru || "");
       setSelectedStatus(props?.data?.status || "active");
+      setPreviewImg(`${baseImage}${props?.data?.image}` || "")
     }, [props?.data]);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

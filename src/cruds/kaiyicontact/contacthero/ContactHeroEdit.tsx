@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { MdEdit, MdSignalWifiStatusbar3Bar, MdSignalWifiStatusbarNotConnected } from "react-icons/md";
 import { EditModalState, LoadingState } from "../../../recoil/atoms";
-import { endpoint } from "../../../Baseurl";
+import { baseImage, endpoint } from "../../../Baseurl";
 import InputField from "../../../uitils/ui/InputField";
 import InputImageField from "../../../uitils/ui/InputImageField";
 import SelectStatus from "../../../uitils/ui/SelectStatus";
@@ -104,7 +104,7 @@ const ContactHeroEdit: React.FC = () => {
   //EDIT MODAL
   const EditModal: React.FC<Props> = (props) => {
     //states
-    const [previewImg, setPreviewImg] = useState<string>(`${endpoint}${props?.data?.image}`);
+    const [previewImg, setPreviewImg] = useState<string>(`${baseImage}${props?.data?.image}`);
     const [image, setImage] = React.useState<File | null>(null);
     const [descriptionAz, setDescriptionAz] = React.useState<string>(props?.data?.description?.az || "");
     const [descriptionEn, setDescriptionEn] = React.useState<string>(props?.data?.description?.en || "");

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { ChangeEvent } from "react";
-import { endpoint } from "../../Baseurl";
+import { baseImage, endpoint } from "../../Baseurl";
 import axios from "axios";
 import Loader from "../../Loader";
 import { IoChevronBackOutline } from "react-icons/io5";
@@ -165,7 +165,7 @@ const LogoEdit: React.FC = () => {
             <InputImageField req={true} onChange={handleUpdateImage} />
             <SelectStatus onChange={handleSelectStatus} selectedStatus={props?.data?.status || "active"} />
             <img
-              src={previewImg ? previewImg : `${endpoint}${props?.data?.logo}`}
+              src={previewImg ? previewImg : `${baseImage}${props?.data?.logo}`}
               alt="Preview"
               width={300}
               height={300}

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { ChangeEvent } from "react";
-import { endpoint } from "../../Baseurl";
+import { baseImage, endpoint } from "../../Baseurl";
 import axios from "axios";
 import Loader from "../../Loader";
 import { IoChevronBackOutline } from "react-icons/io5";
@@ -143,7 +143,7 @@ const AddCarEdit: React.FC = () => {
     const [companyTitleEn, setCompanyTitleEn] = React.useState<string>(props?.data?.companyTitle?.en);
     const [companyTitleRu, setCompanyTitleRu] = React.useState<string>(props?.data?.companyTitle?.ru);
 
-    const [previewImg, setPreviewImg] = React.useState<string>(`${endpoint}${props?.data?.carImage}` || "");
+    const [previewImg, setPreviewImg] = React.useState<string>(`${baseImage}${props?.data?.carImage}` || "");
     const [image, setImage] = React.useState<File | null>(null);
 
     const [miniDescAz, setMiniDescAz] = React.useState<string>(props?.data?.miniDesc?.az || "");
@@ -161,7 +161,7 @@ const AddCarEdit: React.FC = () => {
 
     //fill the defaul values
     React.useEffect(() => {
-      setPreviewImg(`${endpoint}${props?.data?.carImage}` || "");
+      setPreviewImg(`${baseImage}${props?.data?.carImage}` || "");
       setSelectedModel(props?.data?.selected_model || "");
       setSelectedStatus(props?.data?.status || "active");
       setTitleAz(props?.data?.title?.az || "");

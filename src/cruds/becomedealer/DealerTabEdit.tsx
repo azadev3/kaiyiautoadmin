@@ -1,6 +1,6 @@
 import { useEffect, useState, ChangeEvent } from "react";
 import React from "react";
-import { endpoint } from "../../Baseurl";
+import { baseImage, endpoint } from "../../Baseurl";
 import axios from "axios";
 import Loader from "../../Loader";
 import { IoChevronBackOutline } from "react-icons/io5";
@@ -99,7 +99,7 @@ const DealerTabEdit: React.FC = () => {
   //EDIT MODAL
   const EditModal: React.FC<Props> = (props) => {
     //states
-    const [previewImg, setPreviewImg] = useState<string>(`${endpoint}${props?.data?.image}`);
+    const [previewImg, setPreviewImg] = useState<string>(`${baseImage}${props?.data?.image}`);
     const [image, setImage] = React.useState<File | null>(null);
     const [titleAz, setTitleAz] = useState<string>(props?.data?.title?.az || "");
     const [titleEn, setTitleEn] = useState<string>(props?.data.title?.en || "");
@@ -115,7 +115,7 @@ const DealerTabEdit: React.FC = () => {
       setTitleAz(props?.data?.title?.az || "");
       setTitleEn(props?.data?.title?.en || "");
       setTitleRu(props?.data?.title?.ru || "");
-      setPreviewImg(`${endpoint}${props?.data?.image}`);
+      setPreviewImg(`${baseImage}${props?.data?.image}`);
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 

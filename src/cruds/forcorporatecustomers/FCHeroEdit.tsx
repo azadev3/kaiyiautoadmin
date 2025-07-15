@@ -1,6 +1,6 @@
 import { useEffect, useState, ChangeEvent } from "react";
 import React from "react";
-import { endpoint } from "../../Baseurl";
+import { baseImage, endpoint } from "../../Baseurl";
 import axios from "axios";
 import Loader from "../../Loader";
 import { IoChevronBackOutline } from "react-icons/io5";
@@ -105,7 +105,7 @@ const FCHeroEdit: React.FC = () => {
   //EDIT MODAL
   const EditModal: React.FC<Props> = (props) => {
     //states
-    const [previewImg, setPreviewImg] = useState<string>(`${endpoint}${props?.data?.image}`);
+    const [previewImg, setPreviewImg] = useState<string>(`${baseImage}${props?.data?.image}`);
     const [image, setImage] = React.useState<File | null>(null);
     const [descriptionAz, setDescriptionAz] = React.useState<string>(props?.data?.description?.az || "");
     const [descriptionEn, setDescriptionEn] = React.useState<string>(props?.data?.description?.en || "");
@@ -127,7 +127,7 @@ const FCHeroEdit: React.FC = () => {
       setDescriptionAz(props?.data?.description?.az || "");
       setDescriptionEn(props?.data?.description?.en || "");
       setDescriptionRu(props?.data?.description?.ru || "");
-      setPreviewImg(`${endpoint}${props?.data?.image}`);
+      setPreviewImg(`${baseImage}${props?.data?.image}`);
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 

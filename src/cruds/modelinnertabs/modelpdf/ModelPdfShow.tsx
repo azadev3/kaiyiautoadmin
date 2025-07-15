@@ -6,7 +6,7 @@ import { LuEye } from "react-icons/lu";
 import { FaInfo } from "react-icons/fa6";
 import { RiCloseFill } from "react-icons/ri";
 import { MdSignalWifiStatusbar3Bar, MdSignalWifiStatusbarNotConnected } from "react-icons/md";
-import { endpoint } from "../../../Baseurl";
+import { baseImage, endpoint } from "../../../Baseurl";
 import { isTableModalState } from "../../../recoil/atoms";
 import Loader from "../../../Loader";
 import StatusToggle from "../../../uitils/StatusToggle";
@@ -136,7 +136,7 @@ const ModelPdfShow: React.FC = () => {
                     </td>
                     <td>{data?._id}</td>
                     <td>
-                      <Link target="_blank" to={`${endpoint}${data?.pdf}`}>
+                      <Link target="_blank" to={`${baseImage}${data?.pdf}`}>
                         {data?.pdf}
                       </Link>
                     </td>
@@ -183,7 +183,7 @@ const ModelPdfShow: React.FC = () => {
                   <tr>
                     <td title={isTableModal?._id}>{isTableModal?._id}</td>
                     <td title={isTableModal?.pdf}>
-                      <Link target="_blank" to={`${endpoint}${isTableModal?.pdf}`}>
+                      <Link target="_blank" to={`${baseImage}${isTableModal?.pdf}`}>
                         {isTableModal?.pdf}
                       </Link>
                     </td>

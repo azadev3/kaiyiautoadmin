@@ -1,6 +1,6 @@
 import { useEffect, useState, ChangeEvent } from "react";
 import React from "react";
-import { endpoint } from "../../Baseurl";
+import { baseImage, endpoint } from "../../Baseurl";
 import axios from "axios";
 import Loader from "../../Loader";
 import { IoChevronBackOutline } from "react-icons/io5";
@@ -106,7 +106,7 @@ const TelephoneEdit: React.FC = () => {
     const [titleRu, setTitleRu] = useState<string>(props?.data?.title?.ru || "");
     const [telephone, setTelephone] = useState<string>(props?.data?.telephone || "");
     const [image, setImage] = useState<File | null>(null);
-    const [previewImg, setPreviewImg] = useState<string>(`${endpoint}${props?.data?.icon}`);
+    const [previewImg, setPreviewImg] = useState<string>(`${baseImage}${props?.data?.icon}`);
     const [selectedStatus, setSelectedStatus] = React.useState<string>("active");
 
     const handleSelectStatus = (selectedOption: any) => {
@@ -119,7 +119,7 @@ const TelephoneEdit: React.FC = () => {
       setTitleEn(props?.data?.title?.en || "");
       setTitleRu(props?.data?.title?.ru || "");
       setTelephone(props?.data?.telephone || "");
-      setPreviewImg(`${endpoint}${props?.data?.icon}`);
+      setPreviewImg(`${baseImage}${props?.data?.icon}`);
       setSelectedStatus(props?.data?.status || "active");
     }, [props?.data]);
 
